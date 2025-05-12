@@ -111,7 +111,7 @@ export default function Home() {
               { nome: "Moésio Loiola", cargo: "Prefeito", foto: "/images/Moésio.jfif" },
               { nome: "Morgana Kelly", cargo: "Secretária de Saúde", foto: "/images/Morgana.jpg" },
               { nome: "Cicero Rai", cargo: "Coordenador de Endemias", foto: "/images" },
-              { nome: "Ednario Andrade", cargo: "Desenvolvedora do Sistema", foto: "/images/Ednario.jfif" }
+              { nome: "Ednario Andrade", cargo: "Analista e Desenvolvedor de Sistemas", foto: "/images/Ednario.jfif" }
             ].map((pessoa, index) => (
               <div key={index} className="flex flex-col items-center">
                 <img src={pessoa.foto} alt={pessoa.nome} className="w-32 h-32 object-cover rounded-full mb-4" />
