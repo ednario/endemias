@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
@@ -12,12 +11,16 @@ export default function Home() {
   const [formData, setFormData] = useState({ endereco: '', tipo: '', observacoes: '' });
   const [mensagem, setMensagem] = useState('');
 
-  const handleChange = (e: any) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
     const res = await fetch('/api/denuncia', {
       method: 'POST',
@@ -38,7 +41,7 @@ export default function Home() {
 
       <header className="bg-teal-700 text-white py-6">
         <div className="container mx-auto text-center">
-          <h1 className="text-3xl font-bold">Controle de Endemias - Campos Sales CE</h1>
+          <h1 className="text-3xl font-bold">Controle de Endemias</h1>
           <nav className="mt-4 space-x-4">
             <a href="#inicio" className="hover:underline">Início</a>
             <a href="#endemias" className="hover:underline">Endemias</a>
@@ -97,6 +100,26 @@ export default function Home() {
             <button type="submit" className="w-full bg-teal-700 text-white py-2 rounded hover:bg-teal-600">Enviar</button>
           </form>
           {mensagem && <p className="mt-4 text-green-600">{mensagem}</p>}
+        </div>
+      </section>
+
+      <section id="equipe" className="bg-white py-12">
+        <div className="container mx-auto">
+          <h2 className="text-xl font-bold text-center mb-6"></h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            {[ 
+              { nome: "Moésio Loiola", cargo: "Prefeito", foto: "/images/Moésio.jfif" },
+              { nome: "Morgana Kelly", cargo: "Secretária de Saúde", foto: "/images/Morgana.jpg" },
+              { nome: "Cicero Rai", cargo: "Coordenador de Endemias", foto: "/images" },
+              { nome: "Ednario Andrade", cargo: "Desenvolvedora do Sistema", foto: "/images/Ednario.jfif" }
+            ].map((pessoa, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <img src={pessoa.foto} alt={pessoa.nome} className="w-32 h-32 object-cover rounded-full mb-4" />
+                <h3 className="text-lg font-semibold">{pessoa.nome}</h3>
+                <p className="text-gray-600">{pessoa.cargo}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
