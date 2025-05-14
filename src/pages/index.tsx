@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
@@ -34,9 +35,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <header className="bg-blue-900 text-white py-4 dark:bg-gray-800">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <img src="/images/logo.png" alt="Prefeitura de Campos Sales" className="h-20" />
+      <header className="bg-blue-900 text-white dark:bg-gray-800">
+        <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+          <img src="/images/logobranca.png" alt="Prefeitura de Campos Sales" className="h-10 my-2 sm:h-13" />
           <nav className="flex flex-wrap justify-center gap-3 text-sm">
             <a href="#inicio" className="hover:underline">Início</a>
             <a href="https://campossales.ce.gov.br/institucional.php" className="hover:underline">A Prefeitura</a>
