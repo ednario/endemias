@@ -52,6 +52,13 @@ export default function Endemias() {
           </div>
         </div>
       </section>
+      <section id="inicio" className="bg-gray-100 dark:bg-gray-900 dark:text-white py-12 px-4 text-center">
+        <div className="container mx-auto">
+          <h2 className="text-2xl font-semibold mb-2">Juntos contra as endemias</h2>
+          <p className="mb-4">Sua informação é nossa prevenção!</p>
+          <a href="#denuncia" className="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800">Denuncie um foco</a>
+        </div>
+      </section>
 
       <section id="mapa" className="bg-gray-100 dark:bg-gray-900 dark:text-white py-12 px-4 text-center">
         <div className="container mx-auto max-w-6xl">
