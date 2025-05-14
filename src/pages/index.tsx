@@ -35,7 +35,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <header className="bg-blue-900 text-white dark:bg-gray-800">
+      <header className="bg-blue-900 text-white dark:bg-gray-800 pb-3 sm:pb-0">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
           <img src="/images/logobranca.png" alt="Prefeitura de Campos Sales" className="h-10 my-2 sm:h-13" />
           <nav className="flex flex-wrap justify-center gap-3 text-sm">
