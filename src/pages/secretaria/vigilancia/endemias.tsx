@@ -1,3 +1,4 @@
+import CreatorsComponent from "@/components/Creators";
 import FooterComponent from "@/components/Footer";
 import HeaderComponent from "@/components/Header";
 import dynamic from "next/dynamic";
@@ -119,7 +120,7 @@ export default function Endemias() {
           )}
         </div>
       </section>
-
+      <CreatorsComponent />
       <FooterComponent />
     </>
   );

@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
+import CreatorsComponent from '@/components/Creators';
 
 export default function HomePage() {
   const acoes = [
@@ -36,6 +37,7 @@ export default function HomePage() {
           </Swiper>
         </div>
       </section>
+      <CreatorsComponent />
       <FooterComponent />
     </>
   );
