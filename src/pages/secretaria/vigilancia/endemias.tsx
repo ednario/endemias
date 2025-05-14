@@ -20,11 +20,19 @@ export default function Endemias() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch('/api/denuncia', {
+    const res = await fetch('/api/denuncias', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
+    
+    if (!res.ok) {
+      const text = await res.text();
+      console.error("Erro na resposta:", text);
+      setMensagem("Erro ao enviar a denúncia.");
+      return;
+    }
+    
     const data = await res.json();
     setMensagem(data.message);
     setFormData({ endereco: '', tipo: '', observacoes: '' });
