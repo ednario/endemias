@@ -2,7 +2,9 @@
 
 // Carrossel com Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from '@/components/Creators';
@@ -24,18 +26,29 @@ export default function HomePage() {
         <p className="mb-8 max-w-2xl mx-auto">Trabalhamos todos os dias para cuidar da saúde do nosso povo. Conheça algumas ações em destaque abaixo.</p>
 
         <div className="max-w-3xl mx-auto">
-          <Swiper spaceBetween={30} slidesPerView={1} loop={true} autoplay>
-            {acoes.map((acao, idx) => (
-              <SwiperSlide key={idx}>
-                <div className="bg-white dark:bg-gray-700 shadow rounded p-4">
-                  <img src={acao.imagem} alt={acao.titulo} className="mx-auto h-64 w-3xl object-cover rounded mb-4" />
-                  <h3 className="text-xl font-semibold">{acao.titulo}</h3>
-                  <p className="text-sm">{acao.descricao}</p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+      <Swiper
+        spaceBetween={30}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{ delay: 10000 }}
+        pagination={{ clickable: true }}
+        modules={[Autoplay, Pagination]}
+      >
+        {acoes.map((acao, idx) => (
+          <SwiperSlide key={idx}>
+            <div className="bg-white dark:bg-gray-700 shadow rounded p-4">
+              <img
+                src={acao.imagem}
+                alt={acao.titulo}
+                className="mx-auto h-64 w-full object-cover rounded mb-4"
+              />
+              <h3 className="text-xl font-semibold">{acao.titulo}</h3>
+              <p className="text-sm mb-10">{acao.descricao}</p>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+      </div>
       </section>
       <CreatorsComponent />
       <FooterComponent />
