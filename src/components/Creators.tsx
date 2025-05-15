@@ -8,7 +8,7 @@ export default function CreatorsComponent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { nome: "Moésio Loiola", cargo: "Prefeito", foto: "/images/Moésio.jfif" },
-              { nome: "Morgana Kelly", cargo: "Secretária de Saúde", foto: "/images/Morgana.jpg" },
+              { nome: "Morgana Fortaleza", cargo: "Secretária de Saúde", foto: "/images/Morgana.jpg" },
               { nome: "Cicero Rai", cargo: "Coordenador de Endemias", foto: "/images" },
               { nome: "Ednario Andrade", cargo: "Analista e Desenvolvedor de Sistemas", foto: "/images/Ednario.jfif" }
             ].map((pessoa, idx) => (

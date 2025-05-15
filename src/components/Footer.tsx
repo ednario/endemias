@@ -7,7 +7,7 @@ export default function FooterComponent() {
             <p>Segunda a Quinta:</p>
             <p>Manhã: 07:30h às 11:30h</p>
             <p>Tarde: 13:30h às 17:00h</p>
-            <p>Sexta: das 08:00h às 12:00h</p>
+            <p>Sexta: 08:00h às 12:00h</p>
         </div>
         <hr className="h-px my-8 bg-gray-400 border-0 dark:bg-gray-700"/>
         <div className="container mx-auto text-center space-y-1">
