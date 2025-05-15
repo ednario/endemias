@@ -15,7 +15,7 @@ export default function HeaderComponent() {
           <img src="/images/logobranca.png" alt="Prefeitura de Campos Sales" className="h-10" />
           <nav className="space-x-4 text-sm">
             <Link href="/">Início</Link>
-            <Link href="/secretaria/vigilancia/endemias" >Endemias</Link>
+            <Link href="/secretaria/vigilancia" className="hover:underline">Vigilância em Saúde</Link>
           </nav>
         </div>
       </header>
