@@ -26,9 +26,10 @@ export default function HeaderComponent() {
           </nav>
         </div>
         {menuAberto && (
-          <div className="absolute right-0 top-16 bg-blue-900 dark:bg-gray-800 text-white w-48 flex flex-col space-y-4 py-4 px-6 sm:hidden shadow-lg rounded-2xl">
-            <Link className="p-2 rounded-2xl border-1 border-white text-center" href="/" onClick={() => setMenuAberto(false)}>Início</Link>
-            <Link className="p-2 rounded-2xl border-1 border-white text-center" href="/secretaria/vigilancia" onClick={() => setMenuAberto(false)}>Vigilância em Saúde</Link>
+          <div className="absolute right-0 top-16 bg-blue-900 dark:bg-gray-800 text-white w-48 flex flex-col space-y-4 py-4 px-6 sm:hidden shadow-lg rounded-b-3xl">
+            <Link className="text-center" href="/" onClick={() => setMenuAberto(false)}>Início</Link>
+            <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
+            <Link className="text-center" href="/secretaria/vigilancia" onClick={() => setMenuAberto(false)}>Vigilância em Saúde</Link>
           </div>
         )}
       </header>
