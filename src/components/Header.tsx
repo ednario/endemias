@@ -22,14 +22,14 @@ export default function HeaderComponent() {
           </button>
           <nav className="hidden sm:flex space-x-4 text-sm">
             <Link href="/" className="hover:underline">Início</Link>
-            <Link href="/secretaria/vigilancia" className="hover:underline">Vigilância em Saúde</Link>
+            <Link href="/vigilancia" className="hover:underline">Vigilância em Saúde</Link>
           </nav>
         </div>
         {menuAberto && (
           <div className="absolute right-0 top-16 bg-blue-900 dark:bg-gray-800 text-white w-48 flex flex-col space-y-4 py-4 px-6 sm:hidden shadow-lg rounded-b-3xl">
             <Link className="text-center" href="/" onClick={() => setMenuAberto(false)}>Início</Link>
             <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
-            <Link className="text-center" href="/secretaria/vigilancia" onClick={() => setMenuAberto(false)}>Vigilância em Saúde</Link>
+            <Link className="text-center" href="/vigilancia" onClick={() => setMenuAberto(false)}>Vigilância em Saúde</Link>
           </div>
         )}
       </header>

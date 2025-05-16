@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-
-// Carrossel com Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';

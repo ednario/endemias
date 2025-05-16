@@ -47,7 +47,7 @@ export default function VigilanciaSaude() {
           </div>
 
           <Link
-            href="/secretaria/vigilancia/endemias"
+            href="/vigilancia/endemias"
             className="inline-block bg-blue-900 text-white px-6 py-3 rounded hover:bg-blue-800 transition"
           >
             Ver Endemias

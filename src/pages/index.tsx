@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "./secretaria/Home";
+import HomePage from "./Home";
 
 
 export default function Home() {

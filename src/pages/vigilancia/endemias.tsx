@@ -5,13 +5,13 @@ import { validarCPF } from "@/pages/api/valid_cpf";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-const MapComponent = dynamic(() => import("../../../components/LeafletMap"), {
+const MapComponent = dynamic(() => import("../../components/LeafletMap"), {
   ssr: false
 });
 
 export default function Endemias() {
   const [formData, setFormData] = useState({ endereco: '', tipo: '', observacoes: '', cpf: '' });
-  const [mensagem, setMensagem] = useState('');
+  const [mensagem, setMensagem] = useState<{ tipo: 'erro' | 'sucesso'; texto: string } | null>(null);
   const [interacaoMapa, setInteracaoMapa] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -21,24 +21,24 @@ export default function Endemias() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validarCPF(formData.cpf)) {
+      setMensagem({ tipo: 'erro', texto: "CPF inválido." });
+      return;
+    }
+    
     const res = await fetch('/api/denuncias', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
 
-    if (!validarCPF(formData.cpf)) {
-      setMensagem("CPF inválido.");
-      return;
-    }
-    
-    
     if (!res.ok) {
       const text = await res.text();
       console.error("Erro na resposta:", text);
-      setMensagem("Erro ao enviar a denúncia.");
+      setMensagem({ tipo: 'erro', texto: "Erro ao enviar a denúncia." });
       return;
-    }
+    }    
     
     const data = await res.json();
     setMensagem(data.message);
@@ -145,7 +145,15 @@ export default function Endemias() {
             </button>
           </form>
           {mensagem && (
-            <p className="mt-4 text-green-600 dark:text-green-400 text-center">{mensagem}</p>
+            <p
+              className={`mt-4 text-center ${
+                mensagem.tipo === 'erro'
+                  ? 'text-red-600 dark:text-red-400'
+                  : 'text-green-600 dark:text-green-400'
+              }`}
+            >
+              {mensagem.texto}
+            </p>
           )}
         </div>
       </section>
