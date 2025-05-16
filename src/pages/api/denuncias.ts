@@ -13,7 +13,8 @@ export default async function handler(
     return res.status(405).json({ message: 'Método não permitido' });
   }
 
-  const { endereco, tipo, observacoes } = req.body as {
+  const { cpf, endereco, tipo, observacoes } = req.body as {
+    cpf: string;
     endereco: string;
     tipo: string;
     observacoes?: string;
@@ -37,6 +38,7 @@ export default async function handler(
       to: process.env.EMAIL_DESTINO || process.env.EMAIL_USER,
       subject: 'Nova denúncia de foco de endemia',
       text: `
+        CPF: ${cpf}
         Endereço: ${endereco}
         Tipo de foco: ${tipo}
         Observações: ${observacoes || 'Nenhuma'}

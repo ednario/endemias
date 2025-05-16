@@ -1,6 +1,7 @@
 import CreatorsComponent from "@/components/Creators";
 import FooterComponent from "@/components/Footer";
 import HeaderComponent from "@/components/Header";
+import { validarCPF } from "@/pages/api/valid_cpf";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
@@ -9,7 +10,7 @@ const MapComponent = dynamic(() => import("../../../components/LeafletMap"), {
 });
 
 export default function Endemias() {
-  const [formData, setFormData] = useState({ endereco: '', tipo: '', observacoes: '' });
+  const [formData, setFormData] = useState({ endereco: '', tipo: '', observacoes: '', cpf: '' });
   const [mensagem, setMensagem] = useState('');
   const [interacaoMapa, setInteracaoMapa] = useState(false);
 
@@ -25,6 +26,12 @@ export default function Endemias() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     });
+
+    if (!validarCPF(formData.cpf)) {
+      setMensagem("CPF inválido.");
+      return;
+    }
+    
     
     if (!res.ok) {
       const text = await res.text();
@@ -35,7 +42,7 @@ export default function Endemias() {
     
     const data = await res.json();
     setMensagem(data.message);
-    setFormData({ endereco: '', tipo: '', observacoes: '' });
+    setFormData({ endereco: '', tipo: '', observacoes: '', cpf: '' });
   };
 
   return (
@@ -58,6 +65,7 @@ export default function Endemias() {
               </div>
             ))}
           </div>
+            <p className="text-center mt-2">As informações acima são tempotarias e meramente ilustrativas</p>
         </div>
       </section>
       <section id="inicio" className="bg-gray-100 dark:bg-gray-900 dark:text-white py-12 px-4 text-center">
@@ -73,7 +81,6 @@ export default function Endemias() {
           <h2 className="text-2xl sm:text-3xl font-bold mb-6">Mapa de Casos</h2>
 
           <div className="relative w-full h-[400px] sm:h-[500px] rounded overflow-hidden shadow">
-            {/* Botão centralizado no meio do mapa */}
             {!interacaoMapa && (
               <button
                 onClick={() => setInteracaoMapa(true)}
@@ -82,8 +89,6 @@ export default function Endemias() {
                 Liberar interação
               </button>
             )}
-
-            {/* Mapa com interação controlada */}
             <div className={`${!interacaoMapa ? "pointer-events-none opacity-70" : ""} w-full h-full`}>
               <MapComponent />
             </div>
@@ -95,6 +100,15 @@ export default function Endemias() {
         <div className="container mx-auto max-w-2xl">
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Denuncie um Foco</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+              name="cpf"
+              value={formData.cpf}
+              onChange={handleChange}
+              type="text"
+              placeholder="CPF"
+              className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              required
+            />
             <input
               name="endereco"
               value={formData.endereco}
@@ -112,8 +126,8 @@ export default function Endemias() {
               required
             >
               <option value="">Tipo de foco</option>
-              <option value="agua">Água parada</option>
-              <option value="lixo">Lixo acumulado</option>
+              <option value="Água parada">Água parada</option>
+              <option value="Lixo Acomulado">Lixo acumulado</option>
             </select>
             <textarea
               name="observacoes"
