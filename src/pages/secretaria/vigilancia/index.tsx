@@ -1,6 +1,7 @@
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import Link from "next/link";
+import CreatorsComponent from "@/components/Creators";
 
 export default function VigilanciaSaude() {
   const cards = [
@@ -53,7 +54,7 @@ export default function VigilanciaSaude() {
           </Link>
         </div>
       </section>
-
+      <CreatorsComponent />
       <FooterComponent />
     </>
   );
