@@ -58,7 +58,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: "Denúncia enviada com sucesso!" });
+    res.status(200).json({
+      message: {
+        tipo: "sucesso",
+        texto: "Denúncia enviada com sucesso!"
+      }
+    });
+    
   } catch (error) {
     console.error("Erro ao enviar e-mail:", error);
     res.status(500).json({ message: "Erro ao enviar o e-mail." });
