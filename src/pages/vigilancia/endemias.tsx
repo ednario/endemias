@@ -4,7 +4,7 @@ import FooterComponent from "@/components/Footer";
 import HeaderComponent from "@/components/Header";
 import { validarCPF } from "@/pages/api/valid_cpf";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const MapComponent = dynamic(() => import("../../components/LeafletMap"), {
   ssr: false
@@ -16,6 +16,8 @@ export default function Endemias() {
   const [interacaoMapa, setInteracaoMapa] = useState(false);
   const [imagem, setImagem] = useState<File | null>(null);
 
+  const inputImagemRef = useRef<HTMLInputElement>(null) 
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -23,12 +25,12 @@ export default function Endemias() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     if (!validarCPF(formData.cpf)) {
       setMensagem({ tipo: 'erro', texto: "CPF inválido." });
       return;
     }
-    
+  
     const formPayload = new FormData();
     formPayload.append("cpf", formData.cpf);
     formPayload.append("endereco", formData.endereco);
@@ -37,24 +39,30 @@ export default function Endemias() {
     if (imagem) {
       formPayload.append("imagem", imagem);
     }
-
+  
     const res = await fetch('/api/denuncias', {
       method: 'POST',
       body: formPayload,
     });
-
-
+  
     if (!res.ok) {
       const text = await res.text();
       console.error("Erro na resposta:", text);
       setMensagem({ tipo: 'erro', texto: "Erro ao enviar a denúncia." });
       return;
-    }    
-    
+    }
+  
     const data = await res.json();
     setMensagem(data.message);
+  
+    // Agora sim, limpar os campos após envio com sucesso
     setFormData({ endereco: '', tipo: '', observacoes: '', cpf: '' });
+    setImagem(null);
+    if (inputImagemRef.current) {
+      inputImagemRef.current.value = "";
+    }
   };
+  
 
   return (
     <>
