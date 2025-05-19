@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import CreatorsComponent from "@/components/Creators";
 import FooterComponent from "@/components/Footer";
 import HeaderComponent from "@/components/Header";
@@ -147,12 +148,32 @@ export default function Endemias() {
               className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               rows={4}
             />
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImagem(e.target.files?.[0] || null)}
-              className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-            />
+            <div className="w-full">
+              <label className="block mb-2 font-medium">Anexar imagem (opcional)</label>
+              <div className="flex items-center gap-4">
+                <label className="cursor-pointer bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-800 transition">
+                  Selecionar imagem
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImagem(e.target.files?.[0] || null)}
+                    className="hidden"
+                  />
+                </label>
+                {imagem && (
+                  <span className="text-sm dark:text-gray-300 truncate max-w-[200px]">{imagem.name}</span>
+                )}
+              </div>
+              {imagem && (
+                <div className="mt-4">
+                  <img
+                    src={URL.createObjectURL(imagem)}
+                    alt="Pré-visualização"
+                    className="max-h-48 rounded border dark:border-gray-600"
+                  />
+                </div>
+              )}
+            </div>
             <button
               type="submit"
               className="w-full bg-blue-900 text-white py-3 rounded hover:bg-blue-800 transition-colors"
