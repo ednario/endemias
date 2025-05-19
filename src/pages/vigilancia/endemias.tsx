@@ -13,6 +13,7 @@ export default function Endemias() {
   const [formData, setFormData] = useState({ endereco: '', tipo: '', observacoes: '', cpf: '' });
   const [mensagem, setMensagem] = useState<{ tipo: 'erro' | 'sucesso'; texto: string } | null>(null);
   const [interacaoMapa, setInteracaoMapa] = useState(false);
+  const [imagem, setImagem] = useState<File | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -27,11 +28,20 @@ export default function Endemias() {
       return;
     }
     
+    const formPayload = new FormData();
+    formPayload.append("cpf", formData.cpf);
+    formPayload.append("endereco", formData.endereco);
+    formPayload.append("tipo", formData.tipo);
+    formPayload.append("observacoes", formData.observacoes);
+    if (imagem) {
+      formPayload.append("imagem", imagem);
+    }
+
     const res = await fetch('/api/denuncias', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
+      body: formPayload,
     });
+
 
     if (!res.ok) {
       const text = await res.text();
@@ -136,6 +146,12 @@ export default function Endemias() {
               placeholder="Observações adicionais"
               className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               rows={4}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => setImagem(e.target.files?.[0] || null)}
+              className="w-full p-3 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
             <button
               type="submit"
