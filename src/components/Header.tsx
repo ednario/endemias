@@ -31,6 +31,9 @@ export default function HeaderComponent() {
             <Link className="text-center" href="/" onClick={() => setMenuAberto(false)}>Início</Link>
             <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
             <Link className="text-center" href="/vigilancia" onClick={() => setMenuAberto(false)}>Vigilância em Saúde</Link>
+            <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
+            <Link className="text-center" href="/atencao-primaria">Atenção Primaria</Link>
+
           </div>
         )}
       </header>
