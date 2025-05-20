@@ -23,6 +23,7 @@ export default function HeaderComponent() {
           <nav className="hidden sm:flex space-x-4 text-sm">
             <Link href="/" className="hover:underline">Início</Link>
             <Link href="/vigilancia" className="hover:underline">Vigilância em Saúde</Link>
+            <Link href="/atencao-primaria" className="hover:underline">Atenção Primaria</Link>
           </nav>
         </div>
         {menuAberto && (

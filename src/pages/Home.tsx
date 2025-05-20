@@ -1,21 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from '@/components/Creators';
+import CarouselComponent from "@/components/Carousel";
 
 export default function HomePage() {
-  const acoes = [
-    { imagem: "/images/carrossel/001.jpeg", titulo: "Mutirão contra Dengue", descricao: "Realizado no bairro Centro com 50 agentes." },
-    { imagem: "/images/carrossel/002.jpeg", titulo: "Mutirão contra Dengue", descricao: "Realizado no bairro Centro com 50 agentes." },
-    { imagem: "/images/carrossel/003.jpeg", titulo: "Mutirão contra Dengue", descricao: "Realizado no bairro Centro com 50 agentes." },
-    { imagem: "/images/carrossel/004.jpeg", titulo: "Mutirão contra Dengue", descricao: "Realizado no bairro Centro com 50 agentes." },
-    { imagem: "/images/carrossel/005.jpeg", titulo: "Mutirão contra Dengue", descricao: "Realizado no bairro Centro com 50 agentes." },
-  ];
-
   return (
     <>
       <HeaderComponent />
@@ -24,28 +12,33 @@ export default function HomePage() {
         <p className="mb-8 max-w-2xl mx-auto">Trabalhamos todos os dias para cuidar da saúde do nosso povo. Conheça algumas ações em destaque abaixo.</p>
 
         <div className="max-w-3xl mx-auto">
-      <Swiper
-        spaceBetween={30}
-        slidesPerView={1}
-        loop={true}
-        autoplay={{ delay: 10000 }}
-        pagination={{ clickable: true }}
-        modules={[Autoplay, Pagination]}
-      >
-        {acoes.map((acao, idx) => (
-          <SwiperSlide key={idx}>
-            <div className="bg-white dark:bg-gray-700 shadow rounded p-4">
-              <img
-                src={acao.imagem}
-                alt={acao.titulo}
-                className="mx-auto h-64 w-full object-cover rounded mb-4"
-              />
-              <h3 className="text-xl font-semibold">{acao.titulo}</h3>
-              <p className="text-sm mb-10">{acao.descricao}</p>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+        <CarouselComponent
+          acoes={[
+            {
+              imagem: '/images/carousel/001.jpeg',
+              titulo: 'Campanha de Vacinação',
+              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
+            },
+            {
+              imagem: '/images/carousel/002.jpeg',
+              titulo: 'Atendimento Domiciliar',
+              descricao: 'Equipe da saúde visitou mais de 150 residências.'
+            },
+            {
+              imagem: '/images/carousel/003.jpeg',
+              titulo: 'Campanha de Vacinação',
+              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
+            },{
+              imagem: '/images/carousel/004.jpeg',
+              titulo: 'Campanha de Vacinação',
+              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
+            },{
+              imagem: '/images/carousel/005.jpeg',
+              titulo: 'Campanha de Vacinação',
+              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
+            }
+          ]}
+      />
       </div>
       </section>
       <CreatorsComponent />
