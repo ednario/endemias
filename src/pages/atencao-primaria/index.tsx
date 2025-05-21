@@ -137,13 +137,8 @@ export default function AtencaoPrimaria() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-5">
               <img src="/images/atencao-primaria/vacinacao001.jpeg" alt="Vacinação" className="rounded mb-3 w-full h-48 object-cover" />
-              <h3 className="text-xl font-semibold">Vacinação contra a gripe liberada pessoal!!!</h3>
+              <h3 className="text-xl font-semibold">Vacinação contra a gripe liberada!!!</h3>
               <p className="text-sm mt-2">Em todos os postos de saúde da cidade.</p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-5">
-              <img src="/acoes/visita.jpg" alt="Visitas domiciliares" className="rounded mb-3 w-full h-48 object-cover" />
-              <h3 className="text-xl font-semibold">Visitas Domiciliares</h3>
-              <p className="text-sm mt-2">Equipes de saúde levam cuidado até a casa das pessoas com dificuldade de locomoção.</p>
             </div>
           </div>
         </div>

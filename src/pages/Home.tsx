@@ -16,7 +16,7 @@ export default function HomePage() {
           acoes={[
             {
               imagem: '/images/atencao-primaria/vacinacao001.jpeg',
-              titulo: 'Vacinação contra a gripe liberada pessoal!!!',
+              titulo: 'Vacinação contra a gripe liberada!!!',
               descricao: 'Em todos os postos de saúde da cidade.'
             }
           ]}
