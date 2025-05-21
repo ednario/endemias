@@ -15,27 +15,9 @@ export default function HomePage() {
         <CarouselComponent
           acoes={[
             {
-              imagem: '/images/carousel/001.jpeg',
-              titulo: 'Campanha de Vacinação',
-              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
-            },
-            {
-              imagem: '/images/carousel/002.jpeg',
-              titulo: 'Atendimento Domiciliar',
-              descricao: 'Equipe da saúde visitou mais de 150 residências.'
-            },
-            {
-              imagem: '/images/carousel/003.jpeg',
-              titulo: 'Campanha de Vacinação',
-              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
-            },{
-              imagem: '/images/carousel/004.jpeg',
-              titulo: 'Campanha de Vacinação',
-              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
-            },{
-              imagem: '/images/carousel/005.jpeg',
-              titulo: 'Campanha de Vacinação',
-              descricao: 'Mais de 2000 pessoas vacinadas na última semana.'
+              imagem: '/images/atencao-primaria/vacinacao001.jpeg',
+              titulo: 'Vacinação contra a gripe liberada pessoal!!!',
+              descricao: 'Em todos os postos de saúde da cidade.'
             }
           ]}
       />

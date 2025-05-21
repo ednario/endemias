@@ -5,7 +5,7 @@ export default function CreatorsComponent() {
       <section id="equipe" className="bg-gray-200 dark:bg-gray-900 dark:text-white py-12 px-4">
         <div className="container mx-auto flex justify-center text-center">
           {/* <h2 className="text-xl font-bold mb-6">Equipe Responsável</h2> */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             {[
               { nome: "Moésio Loiola", cargo: "Prefeito", foto: "/images/Moésio.jfif" },
               { nome: "Morgana Fortaleza", cargo: "Secretária de Saúde", foto: "/images/Morgana.jpg" },
