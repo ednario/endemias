@@ -52,7 +52,7 @@ export default function EmultiPage() {
 
       <section className="py-16 px-4 bg-white dark:bg-gray-800 dark:text-white">
   <div className="container mx-auto max-w-5xl">
-    <h2 className="text-3xl font-bold mb-10 text-center text-blue-900 dark:text-white">
+    <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">
       Áreas de Atuação
     </h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -78,11 +78,10 @@ export default function EmultiPage() {
 
       <section className="py-16 px-4 bg-gray-100 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-bold mb-6">Destaques das Ações da EMULTI</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
               <img
-                src="/acoes/emulti-grupo.jpg"
+                src="/images/emulti/001.jpeg"
                 alt="Grupo terapêutico"
                 className="w-full h-48 object-cover rounded mb-4"
               />
@@ -93,7 +92,7 @@ export default function EmultiPage() {
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
               <img
-                src="/acoes/emulti-prevencao.jpg"
+                src="/images/emulti/002.png"
                 alt="Ação preventiva"
                 className="w-full h-48 object-cover rounded mb-4"
               />
