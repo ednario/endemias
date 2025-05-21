@@ -9,7 +9,7 @@ export default function AtencaoPrimaria() {
     <>
       <HeaderComponent />
 
-      <section className="py-16 px-4 text-blue-900 dark:text-white dark:bg-gray-800 dark:text-white bg-gray-50">
+      <section className="py-16 px-4 text-blue-900 dark:bg-gray-800 dark:text-white bg-gray-50">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-bold mb-6 dark:text-white">
             Atenção Primária à Saúde
