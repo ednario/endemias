@@ -73,27 +73,63 @@ export default function AtencaoPrimaria() {
       </section>
 
       <section id="ubs" className="py-16 px-4 bg-gray-100 dark:bg-gray-800 dark:text-white">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-2xl font-bold mb-6 text-center">Unidades Básicas de Saúde</h2>
-          <ul className="space-y-4 text-lg">
-            <h3 className="text-1xl font-bold mb-6 text-center">Sede</h3>
-            <li>🏥 UBS Alto Alegre – Avenida Emiliano Fortaleza</li>
-            <li>🏥 UBS Parecidade – Travessa José Pedro</li>
-            <li>🏥 UBS Batalhão – Rua Papa Francisco</li>
-            <li>🏥 UBS Barragem – Rua Doutor Cloves, n°132</li>
-            <li>🏥 UBS Guarani – Avenida Francisco Veloso de Andrade</li>
-            <li>🏥 UBS Centro – Rua João Severo Cortez, n°922</li>
-            <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
-            <h3 className="text-1xl font-bold mb-6 text-center">Distritos</h3>
-            <li>🏥 UBS Caldeirão – Distrito Caldeirão</li>
-            <li>🏥 UBS São José – Agrovila São José</li>
-            <li>🏥 UBS Carmelópolis – ****</li>
-            <li>🏥 UBS Quixariú – Leonardo de Andrade, n°272</li>
-            <li>🏥 UBS Barão – Rua Antônio José de Souza, n°107</li>
-            <li>🏥 UBS Itaguá – Rua da Laje</li>
-          </ul>
-        </div>
-      </section>
+  <div className="container mx-auto max-w-6xl">
+    <h2 className="text-3xl font-bold mb-10 text-center text-blue-900 dark:text-white">
+      Unidades Básicas de Saúde
+    </h2>
+
+    <div className="mb-12">
+      <h3 className="text-2xl font-semibold mb-6 text-center">Sede</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          { nome: "UBS Alto Alegre", endereco: "Avenida Emiliano Fortaleza" },
+          { nome: "UBS Parecidade", endereco: "Travessa José Pedro" },
+          { nome: "UBS Batalhão", endereco: "Rua Papa Francisco" },
+          { nome: "UBS Barragem", endereco: "Rua Doutor Cloves, n°132" },
+          { nome: "UBS Guarani", endereco: "Av. Francisco Veloso de Andrade" },
+          { nome: "UBS Centro", endereco: "Rua João Severo Cortez, n°922" },
+        ].map((ubs, index) => (
+          <div
+            key={index}
+            className="bg-white dark:bg-gray-700 p-4 rounded-xl shadow flex items-start gap-3"
+          >
+            <span className="text-2xl">🏥</span>
+            <div>
+              <p className="font-semibold">{ubs.nome}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">{ubs.endereco}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <h3 className="text-2xl font-semibold mb-6 text-center">Distritos</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          { nome: "UBS Caldeirão", endereco: "Distrito Caldeirão" },
+          { nome: "UBS São José", endereco: "Agrovila São José" },
+          { nome: "UBS Carmelópolis", endereco: "****" },
+          { nome: "UBS Quixariú", endereco: "Leonardo de Andrade, n°272" },
+          { nome: "UBS Barão", endereco: "Rua Antônio José de Souza, n°107" },
+          { nome: "UBS Itaguá", endereco: "Rua da Laje" },
+        ].map((ubs, index) => (
+          <div
+            key={index}
+            className="bg-white dark:bg-gray-700 p-4 rounded-xl shadow flex items-start gap-3"
+          >
+            <span className="text-2xl">🏥</span>
+            <div>
+              <p className="font-semibold">{ubs.nome}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-300">{ubs.endereco}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
 
       <section className="py-16 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl text-center">
