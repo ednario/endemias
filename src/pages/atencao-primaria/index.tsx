@@ -46,7 +46,7 @@ export default function AtencaoPrimaria() {
 
       <section className="py-16 px-4 bg-white dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold mb-10 text-center">Por que a Atenção Primária é importante?</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center">Qual a função da Atenção Primária?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="p-6 bg-blue-50 dark:bg-gray-800 rounded-2xl shadow">
               <HeartPulse className="mx-auto mb-3 h-10 w-10 text-blue-700" />
@@ -85,7 +85,7 @@ export default function AtencaoPrimaria() {
             <li>🏥 UBS Centro – Rua João Severo Cortez, n°922</li>
             <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
             <h3 className="text-1xl font-bold mb-6 text-center">Distritos</h3>
-            <li>🏥 UBS Caldeirão – Destrito Caldeirão</li>
+            <li>🏥 UBS Caldeirão – Distrito Caldeirão</li>
             <li>🏥 UBS São José – Agrovila São José</li>
             <li>🏥 UBS Carmelópolis – ****</li>
             <li>🏥 UBS Quixariú – Leonardo de Andrade, n°272</li>
