@@ -3,7 +3,7 @@ export default function FooterComponent() {
     <>
     <footer id="contato" className="bg-blue-900 dark:bg-gray-800 text-white py-6 px-4 text-sm">
         <div className="container mx-auto text-center space-y-1">
-            <p className="mb-2">Horário:</p>
+            <p className="mb-2">Expediente Secretária de Saúde:</p>
             <p>Segunda a Quinta:</p>
             <p>Manhã: 07:30h às 11:30h</p>
             <p>Tarde: 13:30h às 17:00h</p>

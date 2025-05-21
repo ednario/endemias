@@ -24,6 +24,7 @@ export default function HeaderComponent() {
             <Link href="/" className="hover:underline">Início</Link>
             <Link href="/vigilancia" className="hover:underline">Vigilância em Saúde</Link>
             <Link href="/atencao-primaria" className="hover:underline">Atenção Primaria</Link>
+            <Link href="/emulti" className="hover:underline">EMULTI</Link>
           </nav>
         </div>
         {menuAberto && (
@@ -33,6 +34,8 @@ export default function HeaderComponent() {
             <Link className="text-center" href="/vigilancia" onClick={() => setMenuAberto(false)}>Vigilância em Saúde</Link>
             <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
             <Link className="text-center" href="/atencao-primaria">Atenção Primaria</Link>
+            <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
+            <Link className="text-center" href="/emulti">EMULTI</Link>
 
           </div>
         )}

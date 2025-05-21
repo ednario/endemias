@@ -29,7 +29,7 @@ export default function VigilanciaSaude() {
 
       <section className="py-12 px-4 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto text-center max-w-4xl">
-          <h1 className="text-3xl font-bold mb-4">Vigilância em Saúde</h1>
+          <h1 className="text-3xl text-blue-900 dark:text-white font-bold mb-4">Vigilância em Saúde</h1>
           <p className="mb-8">
             A Vigilância em Saúde atua para proteger e promover a saúde da população, monitorando riscos e prevenindo doenças.
           </p>
