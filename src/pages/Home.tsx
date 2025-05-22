@@ -15,6 +15,11 @@ export default function HomePage() {
         <CarouselComponent
           acoes={[
             {
+            imagem:"/images/atencao-primaria/2025-05-22.jpeg", 
+            titulo:"Aplicação de Flúor - Tempo de Crescer", 
+            descricao:"Realização de mutirão fixo com foco na aplicação de FLÚOR para todas as crianças do município."
+            },
+            {
               imagem: '/images/atencao-primaria/vacinacao001.jpeg',
               titulo: 'Vacinação contra a gripe liberada!!!',
               descricao: 'Em todos os postos de saúde da cidade.'
