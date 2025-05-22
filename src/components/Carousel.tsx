@@ -5,15 +5,15 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-type Acao = {
+interface Acao {
   imagem: string;
   titulo: string;
   descricao?: string;
-};
+}
 
-type CarouselProps = {
+interface CarouselProps {
   acoes: Acao[];
-};
+}
 
 export default function CarouselComponent({ acoes }: CarouselProps) {
   const [imagemExpandida, setImagemExpandida] = useState<string | null>(null);

@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+ 
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from "@/components/Creators";
@@ -9,6 +9,7 @@ import {
         Stethoscope,
         Soup,
          } from "lucide-react";
+import CardComponent from "@/components/Card";
 
 export default function EmultiPage() {
   return (
@@ -49,8 +50,7 @@ export default function EmultiPage() {
           </div>
         </div>
       </section>
-
-      <section className="py-16 px-4 bg-white dark:bg-gray-800 dark:text-white">
+      <section className="bg-white py-16 px-4 dark:bg-gray-800 dark:text-white">
   <div className="container mx-auto max-w-5xl">
     <h2 className="text-3xl font-bold mb-10 text-center dark:text-white">
       Áreas de Atuação
@@ -75,35 +75,21 @@ export default function EmultiPage() {
     </div>
   </div>
 </section>
-
-      <section className="py-16 px-4 bg-gray-100 dark:bg-gray-900 dark:text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-              <img
-                src="/images/emulti/001.jpeg"
-                alt="Grupo terapêutico"
-                className="w-full h-48 object-cover rounded mb-4"
-              />
-              <h3 className="text-xl font-semibold">Grupos Terapêuticos</h3>
-              <p className="text-sm">
-                Atividades em grupo com foco na saúde mental, inclusão social e autoestima.
-              </p>
-            </div>
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-              <img
-                src="/images/emulti/002.png"
-                alt="Ação preventiva"
-                className="w-full h-48 object-cover rounded mb-4"
-              />
-              <h3 className="text-xl font-semibold">Educação em Saúde</h3>
-              <p className="text-sm">
-                Oficinas e rodas de conversa com temas como alimentação, autocuidado e prevenção.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CardComponent 
+            cards={
+              [{
+                  imagem:"/images/emulti/001.jpeg", 
+                  titulo:"Grupos Terapêuticos", 
+                  descricao:"Atividades em grupo com foco na saúde mental, inclusão social e autoestima."
+                },
+                {
+                  imagem:"/images/emulti/002.png", 
+                  titulo:"Educação em Saúde", 
+                  descricao:"Oficinas e rodas de conversa com temas como alimentação, autocuidado e prevenção."
+                }
+              ]
+            }
+        />
 
       <CreatorsComponent />
       <FooterComponent />

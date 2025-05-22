@@ -1,8 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
+ 
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from "@/components/Creators";
 import { HeartPulse, Stethoscope, Syringe, Users } from "lucide-react";
+import CardComponent from "@/components/Card";
 
 export default function AtencaoPrimaria() {
   return (
@@ -83,7 +84,7 @@ export default function AtencaoPrimaria() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[
           { nome: "UBS Alto Alegre", endereco: "Avenida Emiliano Fortaleza" },
-          { nome: "UBS Parecidade", endereco: "Travessa José Pedro" },
+          { nome: "UBS Aparecida", endereco: "Travessa José Pedro" },
           { nome: "UBS Batalhão", endereco: "Rua Papa Francisco" },
           { nome: "UBS Barragem", endereco: "Rua Doutor Cloves, n°132" },
           { nome: "UBS Guarani", endereco: "Av. Francisco Veloso de Andrade" },
@@ -129,21 +130,16 @@ export default function AtencaoPrimaria() {
     </div>
   </div>
 </section>
-
-
-      <section className="py-16 px-4 dark:bg-gray-900 dark:text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-bold mb-6">Destaques das Nossas Ações</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-5">
-              <img src="/images/atencao-primaria/vacinacao001.jpeg" alt="Vacinação" className="rounded mb-3 w-full h-48 object-cover" />
-              <h3 className="text-xl font-semibold">Vacinação contra a gripe liberada!!!</h3>
-              <p className="text-sm mt-2">Em todos os postos de saúde da cidade.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <CardComponent 
+      cards={
+        [{
+            imagem:"/images/atencao-primaria/vacinacao001.jpeg", 
+            titulo:"Vacinação contra a gripe liberada!!!", 
+            descricao:"Em todos os postos de saúde da cidade."
+          }
+        ]
+      }
+      />
       <CreatorsComponent />
       <FooterComponent />
     </>
