@@ -25,6 +25,7 @@ export default function HeaderComponent() {
             <Link href="/vigilancia" className="hover:underline">Vigilância em Saúde</Link>
             <Link href="/atencao-primaria" className="hover:underline">Atenção Primaria</Link>
             <Link href="/emulti" className="hover:underline">EMULTI</Link>
+            <Link href="/tempo-de-crescer" className="hover:underline">Tempo de Crescer</Link>
           </nav>
         </div>
         {menuAberto && (
@@ -36,7 +37,8 @@ export default function HeaderComponent() {
             <Link className="text-center" href="/atencao-primaria">Atenção Primaria</Link>
             <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
             <Link className="text-center" href="/emulti">EMULTI</Link>
-
+            <hr className="h-px bg-gray-400 border-0 dark:bg-gray-700"/>
+            <Link className="text-center" href="/tempo-de-crescer">Tempo de Crescer</Link>
           </div>
         )}
       </header>
