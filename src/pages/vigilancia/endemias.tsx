@@ -68,9 +68,9 @@ export default function Endemias() {
     <>
       <HeaderComponent />
 
-      <section className="py-12 px-4 dark:bg-gray-800 dark:text-white">
-        {/* <div className="container mx-auto"> */}
-          {/* <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Endemias Atuais</h2>
+      {/* <section className="py-12 px-4 dark:bg-gray-800 dark:text-white">
+        <div className="container mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">Endemias Atuais</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { nome: "Dengue", casos: "52 casos ativos" },
@@ -85,8 +85,8 @@ export default function Endemias() {
             ))}
           </div>
             <p className="text-center mt-2">As informações acima são tempotarias e meramente ilustrativas</p>
-        </div> */}
-      </section>
+        </div>
+      </section> */}
       <section id="inicio" className="bg-gray-100 dark:bg-gray-900 dark:text-white py-12 px-4 text-center">
         <div className="container mx-auto">
           <h2 className="text-2xl font-semibold mb-2">Juntos contra as endemias</h2>
