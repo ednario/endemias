@@ -1,6 +1,7 @@
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from "@/components/Creators";
+import CardComponent from "@/components/Card";
 
 export default function TempoDeCrescer() {
   return (
@@ -89,6 +90,16 @@ export default function TempoDeCrescer() {
         </div>
       </section>
 
+      <CardComponent 
+            cards={[
+                {
+                  imagem:"/images/atencao-primaria/2025-05-22.jpeg", 
+                  titulo:"Aplicação de Flúor - Tempo de Crescer", 
+                  descricao:"Realização de mutirão fixo com foco na aplicação de FLÚOR para todas as crianças do município."
+                }
+              ]
+            }
+            />
       <CreatorsComponent />
       <FooterComponent />
     </>
