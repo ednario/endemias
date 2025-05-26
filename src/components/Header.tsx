@@ -16,7 +16,7 @@ export default function HeaderComponent() {
 
       <header className="bg-blue-900 text-white dark:bg-gray-800 p-2 sm:p-0 relative z-50">
         <div className="container mx-auto flex justify-between items-center">
-          <img src="/images/logosec.png" alt="Secretaria de Saúde de Campos Sales" className="h-12 sm:h-20" />
+          <img src="/images/logosec.png" alt="Secretaria de Saúde de Campos Sales" className="h-15 sm:h-20" />
           <button onClick={() => setMenuAberto(!menuAberto)} className="sm:hidden">
             {menuAberto ? <X size={24} /> : <Menu size={24} />}
           </button>
