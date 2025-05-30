@@ -12,20 +12,7 @@ export default function HomePage() {
         <p className="mb-8 max-w-2xl mx-auto">Trabalhamos todos os dias para cuidar da saúde do nosso povo. Conheça algumas ações em destaque abaixo.</p>
 
         <div className="max-w-3xl mx-auto">
-        <CarouselComponent
-          acoes={[
-            {
-            imagem:"/images/atencao-primaria/2025-05-22.jpeg", 
-            titulo:"Aplicação de Flúor - Tempo de Crescer", 
-            descricao:"Realização de mutirão fixo com foco na aplicação de FLÚOR para todas as crianças do município."
-            },
-            {
-              imagem: '/images/atencao-primaria/vacinacao001.jpeg',
-              titulo: 'Vacinação contra a gripe liberada!!!',
-              descricao: 'Em todos os postos de saúde da cidade.'
-            }
-          ]}
-      />
+        <CarouselComponent/>
       </div>
       </section>
       <CreatorsComponent />

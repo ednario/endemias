@@ -1,22 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { getCarouselItems } from '@/lib/hygraph';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-interface Acao {
-  imagem: string;
-  titulo: string;
-  descricao?: string;
-}
+type Slide = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
 
-interface CarouselProps {
-  acoes: Acao[];
-}
-
-export default function CarouselComponent({ acoes }: CarouselProps) {
+export default function Carousel() {
+  const [slides, setSlides] = useState<Slide[]>([]);
   const [imagemExpandida, setImagemExpandida] = useState<string | null>(null);
+
+  useEffect(() => {
+    getCarouselItems().then(setSlides);
+  }, []);
+
+  if (slides.length === 0) return <p>Carregando...</p>;
 
   return (
     <>
@@ -29,18 +38,18 @@ export default function CarouselComponent({ acoes }: CarouselProps) {
           pagination={{ clickable: true }}
           modules={[Autoplay, Pagination]}
         >
-          {acoes.map((acao, idx) => (
-            <SwiperSlide key={idx}>
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id}>
               <div className="bg-white dark:bg-gray-700 shadow rounded p-4 cursor-pointer">
                 <img
-                  src={acao.imagem}
-                  alt={acao.titulo}
+                  src={slide.image.url}
+                  alt={slide.title}
                   className="mx-auto max-h-96 w-full object-contain rounded mb-4"
-                  onClick={() => setImagemExpandida(acao.imagem)}
+                  onClick={() => setImagemExpandida(slide.image.url)}
                 />
-                <h3 className="text-xl font-semibold">{acao.titulo}</h3>
-                {acao.descricao && (
-                  <p className="text-sm mb-10">{acao.descricao}</p>
+                <h3 className="text-xl font-semibold">{slide.title}</h3>
+                {slide.description && (
+                  <p className="text-sm mb-10">{slide.description}</p>
                 )}
               </div>
             </SwiperSlide>
