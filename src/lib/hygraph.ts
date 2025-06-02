@@ -73,3 +73,69 @@ export const getCardAtencao = async (): Promise<CardAtencao[]> => {
 return data.cardAtencoes;
 
 };
+
+type CardEMULTI = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
+
+type EMULTIQueryResponse = {
+  cardsEmulti: CardEMULTI[]; // nome correto: "cardsEmulti"
+};
+
+export const getCardEMULTI = async (): Promise<CardEMULTI[]> => {
+  const query = gql`
+    {
+      cardsEmulti(orderBy: createdAt_DESC, first: 10) {
+        id
+        title
+        description
+        image {
+          url
+        }
+      }
+    }
+  `;
+
+  const data = await client.request<EMULTIQueryResponse>(query);
+  console.log(data.cardsEmulti); // agora funciona corretamente
+
+  return data.cardsEmulti;
+};
+
+type CardTempoCrescer = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
+
+type TempoCrescerQueryResponse = {
+  cardsTempoCrescer: CardTempoCrescer[]; // nome correto: "cardsTempoCrescer"
+};
+
+export const getCardTempoCrescer = async (): Promise<CardTempoCrescer[]> => {
+  const query = gql`
+    {
+      cardsTempoCrescer(orderBy: createdAt_DESC, first: 10) {
+        id
+        title
+        description
+        image {
+          url
+        }
+      }
+    }
+  `;
+
+  const data = await client.request<TempoCrescerQueryResponse>(query);
+  console.log(data.cardsTempoCrescer); // agora funciona corretamente
+
+  return data.cardsTempoCrescer;
+};

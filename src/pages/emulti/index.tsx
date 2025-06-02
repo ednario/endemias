@@ -1,4 +1,7 @@
- 
+ 'use client';
+
+import { useEffect, useState } from 'react';
+import { getCardEMULTI } from '@/lib/hygraph';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from "@/components/Creators";
@@ -11,7 +14,24 @@ import {
          } from "lucide-react";
 import CardComponent from "@/components/Card";
 
+type Card = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
+
 export default function EmultiPage() {
+  const [cards, setCards] = useState<Card[]>([]);
+    
+      useEffect(() => {
+        getCardEMULTI().then(setCards);
+      }, []);
+    
+      if (cards.length === 0) return <p>Carregando...</p>;
+
   return (
     <>
       <HeaderComponent />
@@ -75,21 +95,24 @@ export default function EmultiPage() {
     </div>
   </div>
 </section>
-      <CardComponent 
-            cards={
-              [{
-                  imagem:"/images/emulti/001.jpeg", 
-                  titulo:"Grupos Terapêuticos", 
-                  descricao:"Atividades em grupo com foco na saúde mental, inclusão social e autoestima."
-                },
-                {
-                  imagem:"/images/emulti/002.png", 
-                  titulo:"Educação em Saúde", 
-                  descricao:"Oficinas e rodas de conversa com temas como alimentação, autocuidado e prevenção."
-                }
-              ]
-            }
-        />
+      <section className="py-16 px-4 dark:bg-gray-900 dark:text-white">
+              <div className="container mx-auto max-w-4xl text-center">
+              <h2 className="text-2xl font-bold text-center mt-8">Destaques das Nossas Ações</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {cards.map((slide) => (
+                <CardComponent key={slide.id}
+                cards={[
+                  {
+                    titulo: slide.title,
+                    imagem: slide.image.url,
+                    descricao: slide.description
+                  }
+                ]}
+              />
+            ))}
+            </div>
+            </div>
+            </section>
 
       <CreatorsComponent />
       <FooterComponent />
