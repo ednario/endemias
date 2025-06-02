@@ -1,11 +1,31 @@
- 
+ 'use client';
+
+import { useEffect, useState } from 'react';
+import { getCardAtencao } from '@/lib/hygraph';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from "@/components/Creators";
 import { HeartPulse, Stethoscope, Syringe, Users } from "lucide-react";
 import CardComponent from "@/components/Card";
 
+type Card = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
+
 export default function AtencaoPrimaria() {
+  const [cards, setCards] = useState<Card[]>([]);
+  
+    useEffect(() => {
+      getCardAtencao().then(setCards);
+    }, []);
+  
+    if (cards.length === 0) return <p>Carregando...</p>;
+  
   return (
     <>
       <HeaderComponent />
@@ -103,7 +123,6 @@ export default function AtencaoPrimaria() {
         ))}
       </div>
     </div>
-
     <div>
       <h3 className="text-2xl font-semibold mb-6 text-center">Distritos</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -129,22 +148,27 @@ export default function AtencaoPrimaria() {
       </div>
     </div>
   </div>
-</section>
-      <CardComponent 
-      cards={[
-          {
-            imagem:"/images/atencao-primaria/2025-05-22.jpeg", 
-            titulo:"Aplicação de Flúor - Tempo de Crescer", 
-            descricao:"Realização de mutirão fixo com foco na aplicação de FLÚOR para todas as crianças do município."
-          },
-          {
-            imagem:"/images/atencao-primaria/vacinacao001.jpeg", 
-            titulo:"Vacinação contra a gripe liberada!!!", 
-            descricao:"Em todos os postos de saúde da cidade."
-          },
-        ]
-      }
-      />
+      </section>
+
+      <section className="py-16 px-4 dark:bg-gray-900 dark:text-white">
+        <div className="container mx-auto max-w-4xl text-center">
+        <h2 className="text-2xl font-bold text-center mt-8">Destaques das Nossas Ações</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {cards.map((slide) => (
+          <CardComponent key={slide.id}
+          cards={[
+            {
+              titulo: slide.title,
+              imagem: slide.image.url,
+              descricao: slide.description
+            }
+          ]}
+        />
+      ))}
+      </div>
+      </div>
+      </section>
+
       <CreatorsComponent />
       <FooterComponent />
     </>

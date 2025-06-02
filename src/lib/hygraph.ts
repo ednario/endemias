@@ -40,3 +40,36 @@ export const getCarouselItems = async (): Promise<CarouselItem[]> => {
   const data = await client.request<CarouselQueryResponse>(query);
   return data.carouselItems;
 };
+
+type CardAtencao = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
+
+type AtencaoQueryResponse = {
+  cardAtencoes: CardAtencao[];
+};
+
+export const getCardAtencao = async (): Promise<CardAtencao[]> => {
+  const query = gql`
+  {
+    cardAtencoes(orderBy: createdAt_ASC, first: 10) {
+      id
+      title
+      description
+      image {
+        url
+      }
+    }
+  }
+`;
+
+  const data = await client.request<AtencaoQueryResponse>(query);
+
+return data.cardAtencoes;
+
+};
