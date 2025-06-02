@@ -27,7 +27,7 @@ type CarouselQueryResponse = {
 export const getCarouselItems = async (): Promise<CarouselItem[]> => {
   const query = gql`
     {
-      carouselItems(orderBy: createdAt_ASC, first: 10) {
+      carouselItems(orderBy: createdAt_DESC, first: 10) {
         id
         title
         description
@@ -57,7 +57,7 @@ type AtencaoQueryResponse = {
 export const getCardAtencao = async (): Promise<CardAtencao[]> => {
   const query = gql`
   {
-    cardAtencoes(orderBy: createdAt_ASC, first: 10) {
+    cardAtencoes(orderBy: createdAt_DESC, first: 10) {
       id
       title
       description
