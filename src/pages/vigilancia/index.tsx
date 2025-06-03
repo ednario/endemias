@@ -1,7 +1,21 @@
+ 'use client';
+
+import { useEffect, useState } from 'react';
+import { getCardVigilancia } from '@/lib/hygraph';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import Link from "next/link";
 import CreatorsComponent from "@/components/Creators";
+import CardComponent from '@/components/Card';
+
+type Card = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
 
 export default function VigilanciaSaude() {
   const cards = [
@@ -22,6 +36,14 @@ export default function VigilanciaSaude() {
       descricao: "Protege a saúde de quem trabalha, prevenindo acidentes e doenças causadas pelo ambiente de trabalho."
     }
   ];
+
+  const [cardsVigi, setCards] = useState<Card[]>([]);
+    
+      useEffect(() => {
+        getCardVigilancia().then(setCards);
+      }, []);
+    
+      if (cardsVigi.length === 0) return <p>Carregando...</p>;
 
   return (
     <>
@@ -45,6 +67,24 @@ export default function VigilanciaSaude() {
               </div>
             ))}
           </div>
+          <section className="py-16 px-4 dark:bg-gray-900 dark:text-white">
+                  <div className="container mx-auto max-w-4xl text-center">
+                  <h2 className="text-2xl font-bold text-center mt-8 mb-4">Destaques das Nossas Ações</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {cardsVigi.map((slide) => (
+                    <CardComponent key={slide.id}
+                    cards={[
+                      {
+                        titulo: slide.title,
+                        imagem: slide.image.url,
+                        descricao: slide.description
+                      }
+                    ]}
+                  />
+                ))}
+                </div>
+                </div>
+                </section>
 
           <Link
             href="/vigilancia/endemias"

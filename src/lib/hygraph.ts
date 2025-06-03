@@ -139,3 +139,36 @@ export const getCardTempoCrescer = async (): Promise<CardTempoCrescer[]> => {
 
   return data.cardsTempoCrescer;
 };
+
+type CardVigilancia = {
+  id: string;
+  title: string;
+  description: string;
+  image: {
+    url: string;
+  };
+};
+
+type VigilanciaQueryResponse = {
+  cardsVigilancia: CardVigilancia[]; // nome correto: "cardsVigilancia"
+};
+
+export const getCardVigilancia = async (): Promise<CardVigilancia[]> => {
+  const query = gql`
+    {
+      cardsVigilancia(orderBy: createdAt_DESC, first: 10) {
+        id
+        title
+        description
+        image {
+          url
+        }
+      }
+    }
+  `;
+
+  const data = await client.request<VigilanciaQueryResponse>(query);
+  console.log(data.cardsVigilancia); // agora funciona corretamente
+
+  return data.cardsVigilancia;
+};
