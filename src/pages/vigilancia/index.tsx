@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getCardVigilancia } from '@/lib/hygraph';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
-import Link from "next/link";
+// import Link from "next/link";
 import CreatorsComponent from "@/components/Creators";
 import CardComponent from '@/components/Card';
 
@@ -86,12 +86,12 @@ export default function VigilanciaSaude() {
                 </div>
                 </section>
 
-          <Link
+          {/* <Link
             href="/vigilancia/endemias"
             className="inline-block bg-blue-900 text-white px-6 py-3 rounded hover:bg-blue-800 transition"
           >
             Ver Endemias
-          </Link>
+          </Link> */}
         </div>
       </section>
       <CreatorsComponent />
