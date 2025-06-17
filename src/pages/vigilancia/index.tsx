@@ -15,7 +15,7 @@ import {
   AlertTriangle,
   CheckCircle2,
   Users,
-  Heart
+  // Heart
 } from "lucide-react";
 
 type Card = {

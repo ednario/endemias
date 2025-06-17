@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Mail, MapPin, Clock, Phone, Facebook, Instagram } from "lucide-react";
+import { Mail, MapPin, Clock, Instagram } from "lucide-react";
 
 export default function FooterComponent() {
   return (

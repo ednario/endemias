@@ -9,8 +9,6 @@ import {
   Users,
   Heart, 
   HelpingHand,
-  Stethoscope,
-  Soup,
   Brain,
   Activity,
   Pill
