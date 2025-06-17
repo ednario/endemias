@@ -35,25 +35,39 @@ export default function Carousel() {
           slidesPerView={1}
           loop={true}
           autoplay={{ delay: 10000 }}
-          pagination={{ clickable: true }}
+          pagination={{ 
+            clickable: true,
+            el: '.swiper-pagination',
+            type: 'bullets',
+            bulletClass: 'swiper-pagination-bullet',
+            bulletActiveClass: 'swiper-pagination-bullet-active',
+          }}
           modules={[Autoplay, Pagination]}
+          className="relative"
         >
           {slides.map((slide) => (
             <SwiperSlide key={slide.id}>
-              <div className="bg-white dark:bg-gray-700 shadow rounded p-4 cursor-pointer">
-                <img
-                  src={slide.image.url}
-                  alt={slide.title}
-                  className="mx-auto max-h-96 w-full object-contain rounded mb-4"
-                  onClick={() => setImagemExpandida(slide.image.url)}
-                />
-                <h3 className="text-xl font-semibold">{slide.title}</h3>
-                {slide.description && (
-                  <p className="text-sm mb-10">{slide.description}</p>
-                )}
+              <div className="bg-white dark:bg-gray-700 shadow rounded p-4 cursor-pointer h-[400px] flex flex-col">
+                <div className="relative flex-1 min-h-0">
+                  <div className="h-[250px] w-full">
+                    <img
+                      src={slide.image.url}
+                      alt={slide.title}
+                      className="h-full w-full object-contain rounded"
+                      onClick={() => setImagemExpandida(slide.image.url)}
+                    />
+                  </div>
+                  <div className="mt-4 text-center">
+                    <h3 className="text-xl font-semibold">{slide.title}</h3>
+                    {slide.description && (
+                      <p className="text-sm mt-2">{slide.description}</p>
+                    )}
+                  </div>
+                </div>
               </div>
             </SwiperSlide>
           ))}
+          <div className="swiper-pagination !bottom-0 !relative mt-4"></div>
         </Swiper>
       </div>
 
@@ -70,6 +84,29 @@ export default function Carousel() {
           />
         </div>
       )}
+
+      <style jsx global>{`
+        .swiper-pagination {
+          position: relative !important;
+          bottom: 0 !important;
+          margin-top: 1rem;
+        }
+        .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          background: #CBD5E0;
+          opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+          background: #1E40AF;
+        }
+        .dark .swiper-pagination-bullet {
+          background: #4B5563;
+        }
+        .dark .swiper-pagination-bullet-active {
+          background: #60A5FA;
+        }
+      `}</style>
     </>
   );
 }
