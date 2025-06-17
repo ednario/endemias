@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "formidable": "^3.5.4",
+    "framer-motion": "^12.18.1",
     "graphql-request": "^7.2.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.511.0",

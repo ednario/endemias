@@ -1,24 +1,24 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getCardVigilancia } from '@/lib/hygraph';
+import { getCardEndemias } from '@/lib/hygraph';
 import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
-// import Link from "next/link";
 import CreatorsComponent from "@/components/Creators";
 import CardComponent from '@/components/Card';
 import { motion } from "framer-motion";
 import { 
-  Activity, 
-  Shield, 
-  Droplets, 
-  HardHat,
+  Bug,
+  Droplets,
+  Shield,
   AlertTriangle,
   CheckCircle2,
   Users,
-  // Heart
+  MapPin,
+  Calendar,
 } from "lucide-react";
 
+// Tipos
 type Card = {
   id: string;
   title: string;
@@ -28,21 +28,24 @@ type Card = {
   };
 };
 
-type AreaCard = {
+type DiseaseCard = {
   titulo: string;
   descricao: string;
   icon: React.ElementType;
   color: string;
+  sintomas: string[];
+  prevencao: string[];
 };
 
-type BenefitCard = {
+type ActionCard = {
   icon: React.ElementType;
   title: string;
   description: string;
   color: string;
 };
 
-const AreaCard = ({ titulo, descricao, icon: Icon, color }: AreaCard) => (
+// Componentes
+const DiseaseCard = ({ titulo, descricao, icon: Icon, color, sintomas, prevencao }: DiseaseCard) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +53,7 @@ const AreaCard = ({ titulo, descricao, icon: Icon, color }: AreaCard) => (
     transition={{ duration: 0.5 }}
     className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8"
   >
-    <div className="flex items-start space-x-4">
+    <div className="flex items-start space-x-4 mb-6">
       <div className={`p-3 rounded-xl bg-blue-50 dark:bg-gray-700 ${color}`}>
         <Icon size={24} />
       </div>
@@ -63,10 +66,36 @@ const AreaCard = ({ titulo, descricao, icon: Icon, color }: AreaCard) => (
         </p>
       </div>
     </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-white flex items-center gap-2">
+          <AlertTriangle className="h-5 w-5 text-red-500" />
+          Sintomas
+        </h3>
+        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300">
+          {sintomas.map((sintoma, index) => (
+            <li key={index}>{sintoma}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-white flex items-center gap-2">
+          <Shield className="h-5 w-5 text-green-500" />
+          Prevenção
+        </h3>
+        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300">
+          {prevencao.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
   </motion.div>
 );
 
-const BenefitCard = ({ icon: Icon, title, description, color }: BenefitCard) => (
+const ActionCard = ({ icon: Icon, title, description, color }: ActionCard) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -84,63 +113,120 @@ const BenefitCard = ({ icon: Icon, title, description, color }: BenefitCard) => 
   </motion.div>
 );
 
-export default function VigilanciaSaude() {
-  const areas = [
-    {
-      titulo: "Vigilância Epidemiológica",
-      descricao: "Monitora doenças que podem afetar a população, como dengue, gripe e COVID-19, ajudando a prevenir e controlar surtos.",
-      icon: Activity,
-      color: "text-red-500"
-    },
-    {
-      titulo: "Vigilância Sanitária",
-      descricao: "Cuida da segurança de alimentos, medicamentos e produtos que usamos no dia a dia, garantindo que eles não façam mal à nossa saúde.",
-      icon: Shield,
-      color: "text-blue-500"
-    },
-    {
-      titulo: "Vigilância Ambiental",
-      descricao: "Atua na área ambiental acompanhando o impacto do meio ambiente na nossa saúde, como a qualidade da água e do ar.",
-      icon: Droplets,
-      color: "text-green-500"
-    },
-    {
-      titulo: "Vigilância em Saúde do Trabalhador",
-      descricao: "Protege a saúde de quem trabalha, prevenindo acidentes e doenças causadas pelo ambiente de trabalho.",
-      icon: HardHat,
-      color: "text-yellow-500"
-    }
-  ];
+// Dados estáticos
+const diseases = [
+  {
+    titulo: "Dengue",
+    descricao: "Doença viral transmitida pelo mosquito Aedes aegypti, que pode causar febre alta, dores musculares e articulares.",
+    icon: Bug,
+    color: "text-red-500",
+    sintomas: [
+      "Febre alta",
+      "Dores musculares e articulares",
+      "Dor de cabeça",
+      "Manchas vermelhas na pele",
+      "Náuseas e vômitos"
+    ],
+    prevencao: [
+      "Eliminar água parada",
+      "Usar repelente",
+      "Instalar telas nas janelas",
+      "Manter caixas d'água fechadas",
+      "Limpar calhas e ralos"
+    ]
+  },
+  {
+    titulo: "Chikungunya",
+    descricao: "Doença viral transmitida pelo mesmo mosquito da dengue, causando febre e dores intensas nas articulações.",
+    icon: Bug,
+    color: "text-orange-500",
+    sintomas: [
+      "Febre alta",
+      "Dores intensas nas articulações",
+      "Dor de cabeça",
+      "Manchas vermelhas na pele",
+      "Fadiga"
+    ],
+    prevencao: [
+      "Eliminar água parada",
+      "Usar repelente",
+      "Instalar telas nas janelas",
+      "Manter caixas d'água fechadas",
+      "Limpar calhas e ralos"
+    ]
+  },
+  {
+    titulo: "Zika",
+    descricao: "Doença viral transmitida pelo Aedes aegypti, que pode causar microcefalia em bebês de mães infectadas.",
+    icon: Bug,
+    color: "text-yellow-500",
+    sintomas: [
+      "Febre baixa",
+      "Manchas vermelhas na pele",
+      "Coceira",
+      "Dor de cabeça",
+      "Dor nas articulações"
+    ],
+    prevencao: [
+      "Eliminar água parada",
+      "Usar repelente",
+      "Instalar telas nas janelas",
+      "Manter caixas d'água fechadas",
+      "Limpar calhas e ralos"
+    ]
+  },
+  {
+    titulo: "Leishmaniose",
+    descricao: "Doença parasitária transmitida por mosquitos flebotomíneos, que pode afetar a pele e órgãos internos.",
+    icon: Bug,
+    color: "text-purple-500",
+    sintomas: [
+      "Feridas na pele",
+      "Febre",
+      "Perda de peso",
+      "Aumento do baço e fígado",
+      "Anemia"
+    ],
+    prevencao: [
+      "Usar repelente",
+      "Instalar telas nas janelas",
+      "Manter quintal limpo",
+      "Evitar acúmulo de lixo",
+      "Usar mosquiteiros"
+    ]
+  }
+];
 
-  const benefits = [
-    {
-      icon: AlertTriangle,
-      title: "Prevenção de Doenças",
-      description: "Identificação precoce de riscos e implementação de medidas preventivas",
-      color: "text-red-500"
-    },
-    {
-      icon: CheckCircle2,
-      title: "Qualidade de Vida",
-      description: "Promoção de ambientes saudáveis e seguros para a população",
-      color: "text-green-500"
-    },
-    {
-      icon: Users,
-      title: "Saúde Coletiva",
-      description: "Proteção e promoção da saúde de toda a comunidade",
-      color: "text-blue-500"
-    }
-  ];
+const actions = [
+  {
+    icon: MapPin,
+    title: "Monitoramento",
+    description: "Acompanhamento contínuo de áreas de risco e casos notificados",
+    color: "text-blue-500"
+  },
+  {
+    icon: Calendar,
+    title: "Campanhas",
+    description: "Ações educativas e preventivas em toda a comunidade",
+    color: "text-green-500"
+  },
+  {
+    icon: Users,
+    title: "Equipe Especializada",
+    description: "Profissionais treinados para identificar e tratar casos",
+    color: "text-purple-500"
+  }
+];
 
-  const [cardsVigi, setCards] = useState<Card[]>([]);
+export default function Endemias() {
+  const [cardsEndemias, setCards] = useState<Card[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
     
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const data = await getCardVigilancia();
+        const data = await getCardEndemias();
         setCards(data);
       } catch (err) {
         setError('Erro ao carregar os dados. Por favor, tente novamente mais tarde.');
@@ -176,7 +262,6 @@ export default function VigilanciaSaude() {
     <>
       <HeaderComponent />
 
-      {/* Hero Section */}
       <motion.section 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -185,16 +270,15 @@ export default function VigilanciaSaude() {
       >
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-blue-900 dark:text-white animate-fade-in">
-            Vigilância em Saúde
+            Vigilância de Endemias
           </h1>
           <p className="text-lg mb-8 text-gray-700 dark:text-gray-300 leading-relaxed">
-            A Vigilância em Saúde atua para proteger e promover a saúde da população, 
-            monitorando riscos e prevenindo doenças através de ações integradas e contínuas.
+            Trabalhamos para prevenir e controlar doenças endêmicas em nossa região, 
+            garantindo a saúde e bem-estar de toda a população.
           </p>
         </div>
       </motion.section>
 
-      {/* Áreas de Atuação */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
           <motion.h2 
@@ -203,17 +287,16 @@ export default function VigilanciaSaude() {
             viewport={{ once: true }}
             className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
           >
-            Áreas de Atuação
+            Principais Doenças Endêmicas
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {areas.map((area, idx) => (
-              <AreaCard key={idx} {...area} />
+          <div className="grid grid-cols-1 gap-8">
+            {diseases.map((disease, idx) => (
+              <DiseaseCard key={idx} {...disease} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefícios */}
       <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto max-w-5xl">
           <motion.h2 
@@ -222,17 +305,16 @@ export default function VigilanciaSaude() {
             viewport={{ once: true }}
             className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
           >
-            Benefícios da Vigilância em Saúde
+            Nossas Ações
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefits.map((benefit, idx) => (
-              <BenefitCard key={idx} {...benefit} />
+            {actions.map((action, idx) => (
+              <ActionCard key={idx} {...action} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Destaques */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl">
           <motion.h2 
@@ -244,7 +326,7 @@ export default function VigilanciaSaude() {
             Destaques das Nossas Ações
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {cardsVigi.map((slide) => (
+            {cardsEndemias.map((slide) => (
               <motion.div
                 key={slide.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -267,15 +349,8 @@ export default function VigilanciaSaude() {
         </div>
       </section>
 
-      {/* <Link
-        href="/vigilancia/endemias"
-        className="inline-block bg-blue-900 text-white px-6 py-3 rounded hover:bg-blue-800 transition"
-      >
-        Ver Endemias
-      </Link> */}
-
       <CreatorsComponent />
       <FooterComponent />
     </>
   );
-}
+} 

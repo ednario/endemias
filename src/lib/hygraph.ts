@@ -172,3 +172,29 @@ export const getCardVigilancia = async (): Promise<CardVigilancia[]> => {
 
   return data.cardsVigilancia;
 };
+
+export async function getCardEndemias() {
+  const query = `
+    query GetCardEndemias {
+      cards(where: { category: { name: "Endemias" } }) {
+        id
+        title
+        description
+        image {
+          url
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT!, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  const json = await response.json();
+  return json.data.cards;
+}

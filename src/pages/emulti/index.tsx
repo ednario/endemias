@@ -14,7 +14,9 @@ import {
   Pill
 } from "lucide-react";
 import CardComponent from "@/components/Card";
+import { motion } from "framer-motion";
 
+// Tipos
 type Card = {
   id: string;
   title: string;
@@ -24,21 +26,136 @@ type Card = {
   };
 };
 
+// Componentes
+const ObjectiveCard = ({ icon: Icon, title, description }: { 
+  icon: React.ElementType; 
+  title: string; 
+  description: string;
+}) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+  >
+    <Icon className="mx-auto h-12 w-12 text-blue-700 mb-4" />
+    <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300">{description}</p>
+  </motion.div>
+);
+
+const AreaCard = ({ icon: Icon, title, description }: {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+}) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 text-center"
+  >
+    <Icon className="mx-auto h-10 w-10 text-blue-700 mb-3" />
+    <h3 className="font-semibold text-lg text-blue-900 dark:text-white">{title}</h3>
+    <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">{description}</p>
+  </motion.div>
+);
+
+// Dados estáticos
+const objectives = [
+  {
+    icon: Users,
+    title: "Atendimento Humanizado",
+    description: "Colocar o paciente no centro do cuidado, respeitando sua singularidade."
+  },
+  {
+    icon: Heart,
+    title: "Promoção da Saúde",
+    description: "Fomentar práticas saudáveis e prevenir doenças com ações educativas."
+  },
+  {
+    icon: HelpingHand,
+    title: "Cuidado Integral",
+    description: "Ações interdisciplinares para garantir acolhimento e resolutividade."
+  }
+];
+
+const areas = [
+  {
+    icon: Brain,
+    title: "Psicologia",
+    description: "Acompanhamento psicológico e saúde mental"
+  },
+  {
+    icon: Users,
+    title: "Serviço Social",
+    description: "Assistência social e orientação"
+  },
+  {
+    icon: Activity,
+    title: "Fisioterapia",
+    description: "Reabilitação e prevenção"
+  },
+  {
+    icon: Pill,
+    title: "Nutrição",
+    description: "Avaliação e orientação nutricional"
+  }
+];
+
 export default function EmultiPage() {
   const [cards, setCards] = useState<Card[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
     
   useEffect(() => {
-    getCardEMULTI().then(setCards);
+    const fetchCards = async () => {
+      try {
+        const data = await getCardEMULTI();
+        setCards(data);
+      } catch (err) {
+        setError('Erro ao carregar os dados. Por favor, tente novamente mais tarde.');
+        console.error('Erro ao carregar cards:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCards();
   }, []);
-    
-  if (cards.length === 0) return <p>Carregando...</p>;
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-red-500 text-center">
+          <p className="text-xl font-semibold mb-2">Ops! Algo deu errado</p>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
       <HeaderComponent />
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 dark:text-white">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative py-20 px-4 bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 dark:text-white"
+      >
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-blue-900 dark:text-white animate-fade-in">
             EMULTI - Equipe Multiprofissional
@@ -48,28 +165,28 @@ export default function EmultiPage() {
             o cuidado integral dos usuários do SUS.
           </p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Objetivos Section */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white">Objetivos da EMULTI</h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
+          >
+            Objetivos da EMULTI
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <Users className="mx-auto h-12 w-12 text-blue-700 mb-4" />
-              <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">Atendimento Humanizado</h3>
-              <p className="text-gray-600 dark:text-gray-300">Colocar o paciente no centro do cuidado, respeitando sua singularidade.</p>
-            </div>
-            <div className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <Heart className="mx-auto h-12 w-12 text-blue-700 mb-4" />
-              <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">Promoção da Saúde</h3>
-              <p className="text-gray-600 dark:text-gray-300">Fomentar práticas saudáveis e prevenir doenças com ações educativas.</p>
-            </div>
-            <div className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <HelpingHand className="mx-auto h-12 w-12 text-blue-700 mb-4" />
-              <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">Cuidado Integral</h3>
-              <p className="text-gray-600 dark:text-gray-300">Ações interdisciplinares para garantir acolhimento e resolutividade.</p>
-            </div>
+            {objectives.map((objective, index) => (
+              <ObjectiveCard
+                key={index}
+                icon={objective.icon}
+                title={objective.title}
+                description={objective.description}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -77,30 +194,23 @@ export default function EmultiPage() {
       {/* Áreas de Atuação Section */}
       <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
+          >
             Áreas de Atuação
-          </h2>
+          </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 text-center">
-              <Brain className="mx-auto h-10 w-10 text-blue-700 mb-3" />
-              <h3 className="font-semibold text-lg text-blue-900 dark:text-white">Psicologia</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Acompanhamento psicológico e saúde mental</p>
-            </div>
-            <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 text-center">
-              <Users className="mx-auto h-10 w-10 text-blue-700 mb-3" />
-              <h3 className="font-semibold text-lg text-blue-900 dark:text-white">Serviço Social</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Assistência social e orientação</p>
-            </div>
-            <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 text-center">
-              <Activity className="mx-auto h-10 w-10 text-blue-700 mb-3" />
-              <h3 className="font-semibold text-lg text-blue-900 dark:text-white">Fisioterapia</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Reabilitação e prevenção</p>
-            </div>
-            <div className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 text-center">
-              <Pill className="mx-auto h-10 w-10 text-blue-700 mb-3" />
-              <h3 className="font-semibold text-lg text-blue-900 dark:text-white">Nutrição</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">Avaliação e orientação nutricional</p>
-            </div>
+            {areas.map((area, index) => (
+              <AreaCard
+                key={index}
+                icon={area.icon}
+                title={area.title}
+                description={area.description}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -108,18 +218,33 @@ export default function EmultiPage() {
       {/* Destaques Section */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold mb-12 text-blue-900 dark:text-white">Destaques das Nossas Ações</h2>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold mb-12 text-blue-900 dark:text-white"
+          >
+            Destaques das Nossas Ações
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cards.map((slide) => (
-              <CardComponent key={slide.id}
-                cards={[
-                  {
-                    titulo: slide.title,
-                    imagem: slide.image.url,
-                    descricao: slide.description
-                  }
-                ]}
-              />
+              <motion.div
+                key={slide.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <CardComponent
+                  cards={[
+                    {
+                      titulo: slide.title,
+                      imagem: slide.image.url,
+                      descricao: slide.description
+                    }
+                  ]}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
