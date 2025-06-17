@@ -43,7 +43,7 @@ export default function TempoDeCrescer() {
 
       {/* Hero Section */}
       <section className="relative py-20 px-4 bg-gradient-to-br from-yellow-100 via-blue-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 dark:text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/tempo-de-crescer/pattern.png')] opacity-5"></div>
+        <div className="absolute inset-0 bg-[url('/images/tempo-de-crescer/pattern.svg')] opacity-5"></div>
         <div className="container mx-auto max-w-5xl text-center relative">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-blue-900 dark:text-white animate-fade-in">
             Tempo de Crescer
