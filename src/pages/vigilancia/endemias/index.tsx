@@ -9,10 +9,8 @@ import CardComponent from '@/components/Card';
 import { motion } from "framer-motion";
 import { 
   Bug,
-  Droplets,
   Shield,
   AlertTriangle,
-  CheckCircle2,
   Users,
   MapPin,
   Calendar,
