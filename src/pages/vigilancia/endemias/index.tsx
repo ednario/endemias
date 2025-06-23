@@ -6,7 +6,6 @@ import HeaderComponent from "@/components/Header";
 import FooterComponent from "@/components/Footer";
 import CreatorsComponent from "@/components/Creators";
 import CardComponent from '@/components/Card';
-import { motion } from "framer-motion";
 import { 
   Bug,
   Shield,
