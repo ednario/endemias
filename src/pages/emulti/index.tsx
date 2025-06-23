@@ -14,7 +14,6 @@ import {
   Pill
 } from "lucide-react";
 import CardComponent from "@/components/Card";
-import { motion } from "framer-motion";
 import SectionTitle from "@/components/motionComponents/SectionTitle";
 import AnimatedDiv from "@/components/motionComponents/AnimatedDiv";
 import MotionSection from "@/components/motionComponents/MotionSection";

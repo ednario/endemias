@@ -7,7 +7,6 @@ import FooterComponent from "@/components/Footer";
 // import Link from "next/link";
 import CreatorsComponent from "@/components/Creators";
 import CardComponent from '@/components/Card';
-import { motion } from "framer-motion";
 import { 
   Activity, 
   Shield, 
