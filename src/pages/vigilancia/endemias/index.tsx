@@ -15,6 +15,8 @@ import {
   MapPin,
   Calendar,
 } from "lucide-react";
+import React from 'react';
+import AnimatedDiv from "@/components/AnimatedDiv";
 
 // Tipos
 type Card = {
@@ -42,13 +44,33 @@ type ActionCard = {
   color: string;
 };
 
-// Componentes
-const DiseaseCard = ({ titulo, descricao, icon: Icon, color, sintomas, prevencao }: DiseaseCard) => (
-  <motion.div
+// Componentes auxiliares
+const InfoList: React.FC<{ title: string; icon: React.ElementType; iconClass: string; items: string[] }> = ({ title, icon: Icon, iconClass, items }) => (
+  <div>
+    <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-white flex items-center gap-2">
+      <Icon className={iconClass + " h-5 w-5"} />
+      {title}
+    </h3>
+    <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300">
+      {items.map((item, idx) => <li key={idx}>{item}</li>)}
+    </ul>
+  </div>
+);
+
+const SectionTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <motion.h2 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+    className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
+  >
+    {children}
+  </motion.h2>
+);
+
+// Componentes
+const DiseaseCard: React.FC<DiseaseCard> = ({ titulo, descricao, icon: Icon, color, sintomas, prevencao }) => (
+  <AnimatedDiv
     className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8"
   >
     <div className="flex items-start space-x-4 mb-6">
@@ -56,59 +78,25 @@ const DiseaseCard = ({ titulo, descricao, icon: Icon, color, sintomas, prevencao
         <Icon size={24} />
       </div>
       <div>
-        <h2 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">
-          {titulo}
-        </h2>
-        <p className="text-gray-600 dark:text-gray-300">
-          {descricao}
-        </p>
+        <h2 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">{titulo}</h2>
+        <p className="text-gray-600 dark:text-gray-300">{descricao}</p>
       </div>
     </div>
-
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div>
-        <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-white flex items-center gap-2">
-          <AlertTriangle className="h-5 w-5 text-red-500" />
-          Sintomas
-        </h3>
-        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300">
-          {sintomas.map((sintoma, index) => (
-            <li key={index}>{sintoma}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-white flex items-center gap-2">
-          <Shield className="h-5 w-5 text-green-500" />
-          Prevenção
-        </h3>
-        <ul className="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-300">
-          {prevencao.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </div>
+      <InfoList title="Sintomas" icon={AlertTriangle} iconClass="text-red-500" items={sintomas} />
+      <InfoList title="Prevenção" icon={Shield} iconClass="text-green-500" items={prevencao} />
     </div>
-  </motion.div>
+  </AnimatedDiv>
 );
 
-const ActionCard = ({ icon: Icon, title, description, color }: ActionCard) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+const ActionCard: React.FC<ActionCard> = ({ icon: Icon, title, description, color }) => (
+  <AnimatedDiv
     className="bg-white dark:bg-gray-700 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
   >
     <Icon className={`mx-auto h-12 w-12 ${color} mb-4`} />
-    <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">
-      {title}
-    </h3>
-    <p className="text-gray-600 dark:text-gray-300">
-      {description}
-    </p>
-  </motion.div>
+    <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300">{description}</p>
+  </AnimatedDiv>
 );
 
 // Dados estáticos
@@ -279,14 +267,7 @@ export default function Endemias() {
 
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Principais Doenças Endêmicas
-          </motion.h2>
+          <SectionTitle>Principais Doenças Endêmicas</SectionTitle>
           <div className="grid grid-cols-1 gap-8">
             {diseases.map((disease, idx) => (
               <DiseaseCard key={idx} {...disease} />
@@ -297,14 +278,7 @@ export default function Endemias() {
 
       <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Nossas Ações
-          </motion.h2>
+          <SectionTitle>Nossas Ações</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {actions.map((action, idx) => (
               <ActionCard key={idx} {...action} />
@@ -315,22 +289,11 @@ export default function Endemias() {
 
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Destaques das Nossas Ações
-          </motion.h2>
+          <SectionTitle>Destaques das Nossas Ações</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cardsEndemias.map((slide) => (
-              <motion.div
+              <AnimatedDiv
                 key={slide.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
               >
                 <CardComponent 
                   cards={[
@@ -341,7 +304,7 @@ export default function Endemias() {
                     }
                   ]}
                 />
-              </motion.div>
+              </AnimatedDiv>
             ))}
           </div>
         </div>

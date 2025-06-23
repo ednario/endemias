@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import CardComponent from "@/components/Card";
 import { motion } from "framer-motion";
+import SectionTitle from "@/components/SectionTitle";
+import AnimatedDiv from "@/components/AnimatedDiv";
 
 // Tipos
 type Card = {
@@ -32,17 +34,13 @@ const ObjectiveCard = ({ icon: Icon, title, description }: {
   title: string; 
   description: string;
 }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+  <AnimatedDiv
     className="p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
   >
     <Icon className="mx-auto h-12 w-12 text-blue-700 mb-4" />
     <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">{title}</h3>
     <p className="text-gray-600 dark:text-gray-300">{description}</p>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 const AreaCard = ({ icon: Icon, title, description }: {
@@ -50,17 +48,13 @@ const AreaCard = ({ icon: Icon, title, description }: {
   title: string;
   description: string;
 }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+  <AnimatedDiv
     className="bg-white dark:bg-gray-700 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 text-center"
   >
     <Icon className="mx-auto h-10 w-10 text-blue-700 mb-3" />
     <h3 className="font-semibold text-lg text-blue-900 dark:text-white">{title}</h3>
     <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">{description}</p>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 // Dados estáticos
@@ -170,14 +164,7 @@ export default function EmultiPage() {
       {/* Objetivos Section */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Objetivos da EMULTI
-          </motion.h2>
+          <SectionTitle>Objetivos da EMULTI</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {objectives.map((objective, index) => (
               <ObjectiveCard
@@ -194,14 +181,7 @@ export default function EmultiPage() {
       {/* Áreas de Atuação Section */}
       <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Áreas de Atuação
-          </motion.h2>
+          <SectionTitle>Áreas de Atuação</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {areas.map((area, index) => (
               <AreaCard
@@ -218,22 +198,11 @@ export default function EmultiPage() {
       {/* Destaques Section */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-blue-900 dark:text-white"
-          >
-            Destaques das Nossas Ações
-          </motion.h2>
+          <SectionTitle>Destaques das Nossas Ações</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cards.map((slide) => (
-              <motion.div
+              <AnimatedDiv
                 key={slide.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
               >
                 <CardComponent
                   cards={[
@@ -244,7 +213,7 @@ export default function EmultiPage() {
                     }
                   ]}
                 />
-              </motion.div>
+              </AnimatedDiv>
             ))}
           </div>
         </div>

@@ -19,6 +19,8 @@ import {
   Brain,
   Smile
 } from "lucide-react";
+import SectionTitle from "@/components/SectionTitle";
+import AnimatedDiv from "@/components/AnimatedDiv";
 
 type Card = {
   id: string;
@@ -42,11 +44,7 @@ type ActivityCard = {
 };
 
 const InfoCard = ({ icon: Icon, title, description }: InfoCard) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+  <AnimatedDiv
     className="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
   >
     <div className="bg-blue-100 dark:bg-gray-700 p-4 rounded-xl w-fit mb-4">
@@ -56,15 +54,11 @@ const InfoCard = ({ icon: Icon, title, description }: InfoCard) => (
     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
       {description}
     </p>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 const ActivityCard = ({ title, icon: Icon, color }: ActivityCard) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+  <AnimatedDiv
     className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
   >
     <div className={`p-3 rounded-xl bg-blue-50 dark:bg-gray-700 w-fit mb-4 ${color}`}>
@@ -73,7 +67,7 @@ const ActivityCard = ({ title, icon: Icon, color }: ActivityCard) => (
     <p className="text-lg font-medium text-gray-800 dark:text-white">
       {title}
     </p>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 const infoCards = [
@@ -203,14 +197,9 @@ export default function TempoDeCrescer() {
 
       <section className="py-20 px-4 bg-gradient-to-br from-yellow-50 to-white dark:from-gray-800 dark:to-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
+          <SectionTitle>
             Atividades Realizadas
-          </motion.h2>
+          </SectionTitle>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
             {activities.map((activity, index) => (
               <ActivityCard key={index} {...activity} />
@@ -221,10 +210,7 @@ export default function TempoDeCrescer() {
 
       <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 dark:text-white">
         <div className="container mx-auto max-w-3xl text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <AnimatedDiv
             className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg"
           >
             <Heart className="h-12 w-12 text-red-500 mx-auto mb-6" />
@@ -236,28 +222,20 @@ export default function TempoDeCrescer() {
               oferecendo apoio, afeto e estímulos adequados. É um espaço onde cada criança é respeitada em sua individualidade,
               desenvolvendo suas habilidades com segurança e alegria.
             </p>
-          </motion.div>
+          </AnimatedDiv>
         </div>
       </section>
 
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
+          <SectionTitle>
             Destaques das Nossas Ações
-          </motion.h2>
+          </SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cards.map((slide) => (
-              <motion.div
+              <AnimatedDiv
                 key={slide.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg"
               >
                 <CardComponent 
                   cards={[
@@ -268,7 +246,7 @@ export default function TempoDeCrescer() {
                     }
                   ]}
                 />
-              </motion.div>
+              </AnimatedDiv>
             ))}
           </div>
         </div>

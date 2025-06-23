@@ -18,6 +18,8 @@ import {
   Users,
   // Heart
 } from "lucide-react";
+import SectionTitle from "@/components/SectionTitle";
+import AnimatedDiv from "@/components/AnimatedDiv";
 
 type Card = {
   id: string;
@@ -43,11 +45,7 @@ type BenefitCard = {
 };
 
 const AreaCard = ({ titulo, descricao, icon: Icon, color }: AreaCard) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+  <AnimatedDiv
     className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-8"
   >
     <div className="flex items-start space-x-4">
@@ -63,15 +61,11 @@ const AreaCard = ({ titulo, descricao, icon: Icon, color }: AreaCard) => (
         </p>
       </div>
     </div>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 const BenefitCard = ({ icon: Icon, title, description, color }: BenefitCard) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
+  <AnimatedDiv
     className="bg-white dark:bg-gray-700 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
   >
     <Icon className={`mx-auto h-12 w-12 ${color} mb-4`} />
@@ -81,7 +75,7 @@ const BenefitCard = ({ icon: Icon, title, description, color }: BenefitCard) => 
     <p className="text-gray-600 dark:text-gray-300">
       {description}
     </p>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 export default function VigilanciaSaude() {
@@ -197,14 +191,7 @@ export default function VigilanciaSaude() {
       {/* Áreas de Atuação */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Áreas de Atuação
-          </motion.h2>
+          <SectionTitle>Áreas de Atuação</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {areas.map((area, idx) => (
               <AreaCard key={idx} {...area} />
@@ -216,14 +203,7 @@ export default function VigilanciaSaude() {
       {/* Benefícios */}
       <section className="py-20 px-4 bg-gray-50 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Benefícios da Vigilância em Saúde
-          </motion.h2>
+          <SectionTitle>Benefícios da Vigilância em Saúde</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {benefits.map((benefit, idx) => (
               <BenefitCard key={idx} {...benefit} />
@@ -235,22 +215,11 @@ export default function VigilanciaSaude() {
       {/* Destaques */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Destaques das Nossas Ações
-          </motion.h2>
+          <SectionTitle>Destaques das Nossas Ações</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cardsVigi.map((slide) => (
-              <motion.div
+              <AnimatedDiv
                 key={slide.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
               >
                 <CardComponent 
                   cards={[
@@ -261,7 +230,7 @@ export default function VigilanciaSaude() {
                     }
                   ]}
                 />
-              </motion.div>
+              </AnimatedDiv>
             ))}
           </div>
         </div>

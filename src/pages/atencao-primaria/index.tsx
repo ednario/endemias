@@ -8,6 +8,9 @@ import CreatorsComponent from "@/components/Creators";
 import { HeartPulse, Stethoscope, Syringe, Users } from "lucide-react";
 import CardComponent from "@/components/Card";
 import { motion } from "framer-motion";
+import SectionTitle from "@/components/SectionTitle";
+import InfoList from "@/components/InfoList";
+import AnimatedDiv from "@/components/AnimatedDiv";
 
 // Tipos
 type Card = {
@@ -26,16 +29,10 @@ type UBS = {
 
 // Componentes
 const ServiceCard = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    className="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
-  >
+  <AnimatedDiv className="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
     <h2 className="text-2xl font-semibold mb-4 text-blue-900 dark:text-white">{title}</h2>
     {children}
-  </motion.div>
+  </AnimatedDiv>
 );
 
 const FunctionCard = ({ icon: Icon, title, description }: {
@@ -43,33 +40,21 @@ const FunctionCard = ({ icon: Icon, title, description }: {
   title: string;
   description: string;
 }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    className="p-8 bg-blue-50 dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-  >
+  <AnimatedDiv className="p-8 bg-blue-50 dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
     <Icon className="mx-auto mb-4 h-12 w-12 text-blue-700" />
     <h3 className="text-xl font-semibold mb-3 text-blue-900 dark:text-white">{title}</h3>
     <p className="text-gray-700 dark:text-gray-300">{description}</p>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 const UBSCard = ({ nome, endereco }: UBS) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5 }}
-    className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-start gap-4"
-  >
+  <AnimatedDiv className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-start gap-4">
     <span className="text-3xl">🏥</span>
     <div>
       <p className="font-semibold text-lg text-blue-900 dark:text-white">{nome}</p>
       <p className="text-gray-600 dark:text-gray-300">{endereco}</p>
     </div>
-  </motion.div>
+  </AnimatedDiv>
 );
 
 // Dados estáticos
@@ -175,12 +160,12 @@ export default function AtencaoPrimaria() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-left">
             <ServiceCard title="Serviços Oferecidos">
-              <ul className="list-disc pl-5 space-y-3 text-gray-700 dark:text-gray-200">
-                <li className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Consultas médicas e de enfermagem</li>
-                <li className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Vacinação e campanhas de imunização</li>
-                <li className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Atendimento odontológico</li>
-                <li className="hover:text-blue-700 dark:hover:text-blue-400 transition-colors">Pré-natal, puericultura e acompanhamento familiar</li>
-              </ul>
+              <InfoList title="Serviços Oferecidos" icon={() => null} iconClass="" items={[
+                "Consultas médicas e de enfermagem",
+                "Vacinação e campanhas de imunização",
+                "Atendimento odontológico",
+                "Pré-natal, puericultura e acompanhamento familiar"
+              ]} />
             </ServiceCard>
 
             <ServiceCard title="Nossas UBSs">
@@ -200,14 +185,7 @@ export default function AtencaoPrimaria() {
 
       <section className="py-20 px-4 bg-white dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Qual a função da Atenção Primária?
-          </motion.h2>
+          <SectionTitle>Qual a função da Atenção Primária?</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {functions.map((func, index) => (
               <FunctionCard
@@ -223,24 +201,10 @@ export default function AtencaoPrimaria() {
 
       <section id="ubs" className="py-20 px-4 bg-gray-50 dark:bg-gray-800 dark:text-white">
         <div className="container mx-auto max-w-6xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-          >
-            Unidades Básicas de Saúde
-          </motion.h2>
+          <SectionTitle>Unidades Básicas de Saúde</SectionTitle>
 
           <div className="mb-16">
-            <motion.h3 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl font-semibold mb-8 text-center text-blue-800 dark:text-blue-300"
-            >
-              Sede
-            </motion.h3>
+            <SectionTitle>Sede</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {ubsSede.map((ubs, index) => (
                 <UBSCard key={index} {...ubs} />
@@ -249,14 +213,7 @@ export default function AtencaoPrimaria() {
           </div>
 
           <div>
-            <motion.h3 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl font-semibold mb-8 text-center text-blue-800 dark:text-blue-300"
-            >
-              Distritos
-            </motion.h3>
+            <SectionTitle>Distritos</SectionTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {ubsDistritos.map((ubs, index) => (
                 <UBSCard key={index} {...ubs} />
@@ -268,14 +225,7 @@ export default function AtencaoPrimaria() {
 
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-4xl text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-center mb-12 text-blue-900 dark:text-white"
-          >
-            Destaques das Nossas Ações
-          </motion.h2>
+          <SectionTitle>Destaques das Nossas Ações</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cards.map((slide) => (
               <motion.div
