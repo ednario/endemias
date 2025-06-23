@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 interface MotionH1Props {
   children: ReactNode;
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
