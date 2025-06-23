@@ -15,8 +15,9 @@ import {
 } from "lucide-react";
 import CardComponent from "@/components/Card";
 import { motion } from "framer-motion";
-import SectionTitle from "@/components/SectionTitle";
-import AnimatedDiv from "@/components/AnimatedDiv";
+import SectionTitle from "@/components/motionComponents/SectionTitle";
+import AnimatedDiv from "@/components/motionComponents/AnimatedDiv";
+import MotionSection from "@/components/motionComponents/MotionSection";
 
 // Tipos
 type Card = {
@@ -144,10 +145,7 @@ export default function EmultiPage() {
       <HeaderComponent />
 
       {/* Hero Section */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+      <MotionSection
         className="relative py-20 px-4 bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 dark:text-white"
       >
         <div className="container mx-auto max-w-4xl text-center">
@@ -159,7 +157,7 @@ export default function EmultiPage() {
             o cuidado integral dos usuários do SUS.
           </p>
         </div>
-      </motion.section>
+      </MotionSection>
 
       {/* Objetivos Section */}
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">

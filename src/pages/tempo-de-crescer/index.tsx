@@ -19,8 +19,11 @@ import {
   Brain,
   Smile
 } from "lucide-react";
-import SectionTitle from "@/components/SectionTitle";
-import AnimatedDiv from "@/components/AnimatedDiv";
+import SectionTitle from "@/components/motionComponents/SectionTitle";
+import AnimatedDiv from "@/components/motionComponents/AnimatedDiv";
+import MotionSection from "@/components/motionComponents/MotionSection";
+import MotionH1 from "@/components/motionComponents/MotionH1";
+import MotionP from "@/components/motionComponents/MotionP";
 
 type Card = {
   id: string;
@@ -141,23 +144,20 @@ export default function TempoDeCrescer() {
     <>
       <HeaderComponent />
 
-      <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+      <MotionSection
         className="relative py-20 px-4 bg-gradient-to-br from-yellow-100 via-blue-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 dark:text-white overflow-hidden"
       >
         <div className="absolute inset-0 bg-[url('/images/tempo-de-crescer/pattern.svg')] opacity-5"></div>
         <div className="container mx-auto max-w-5xl text-center relative">
-          <motion.h1 
+          <MotionH1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl sm:text-5xl font-bold mb-6 text-blue-900 dark:text-white"
           >
             Tempo de Crescer
-          </motion.h1>
-          <motion.p 
+          </MotionH1>
+          <MotionP
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -165,11 +165,8 @@ export default function TempoDeCrescer() {
           >
             Um programa da Prefeitura de Campos Sales dedicado ao desenvolvimento infantil, 
             com atenção especial a crianças com Transtorno do Espectro Autista (TEA) e outras síndromes.
-          </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+          </MotionP>
+          <AnimatedDiv
             className="flex justify-center space-x-4"
           >
             <div className="bg-white dark:bg-gray-800 p-4 rounded-full shadow-lg">
@@ -181,9 +178,9 @@ export default function TempoDeCrescer() {
             <div className="bg-white dark:bg-gray-800 p-4 rounded-full shadow-lg">
               <Brain className="h-8 w-8 text-blue-500" />
             </div>
-          </motion.div>
+          </AnimatedDiv>
         </div>
-      </motion.section>
+      </MotionSection>
 
       <section className="py-20 px-4 bg-white dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-6xl">

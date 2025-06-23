@@ -15,7 +15,9 @@ import {
   MapPin,
   Calendar,
 } from "lucide-react";
-import AnimatedDiv from "@/components/AnimatedDiv";
+import AnimatedDiv from "@/components/motionComponents/AnimatedDiv";
+import MotionSection from "@/components/motionComponents/MotionSection";
+import SectionTitle from "@/components/motionComponents/SectionTitle";
 
 // Tipos
 type Card = {
@@ -54,17 +56,6 @@ const InfoList: React.FC<{ title: string; icon: React.ElementType; iconClass: st
       {items.map((item, idx) => <li key={idx}>{item}</li>)}
     </ul>
   </div>
-);
-
-const SectionTitle: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <motion.h2 
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    className="text-3xl font-bold mb-12 text-center text-blue-900 dark:text-white"
-  >
-    {children}
-  </motion.h2>
 );
 
 // Componentes
@@ -247,12 +238,7 @@ export default function Endemias() {
     <>
       <HeaderComponent />
 
-      <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative py-20 px-4 bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 dark:text-white"
-      >
+      <MotionSection>
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-blue-900 dark:text-white animate-fade-in">
             Vigilância de Endemias
@@ -262,7 +248,7 @@ export default function Endemias() {
             garantindo a saúde e bem-estar de toda a população.
           </p>
         </div>
-      </motion.section>
+      </MotionSection>
 
       <section className="py-20 px-4 dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">

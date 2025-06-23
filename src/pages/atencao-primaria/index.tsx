@@ -8,9 +8,10 @@ import CreatorsComponent from "@/components/Creators";
 import { HeartPulse, Stethoscope, Syringe, Users } from "lucide-react";
 import CardComponent from "@/components/Card";
 import { motion } from "framer-motion";
-import SectionTitle from "@/components/SectionTitle";
+import SectionTitle from "@/components/motionComponents/SectionTitle";
 import InfoList from "@/components/InfoList";
-import AnimatedDiv from "@/components/AnimatedDiv";
+import AnimatedDiv from "@/components/motionComponents/AnimatedDiv";
+import MotionSection from "@/components/motionComponents/MotionSection";
 
 // Tipos
 type Card = {
@@ -143,10 +144,7 @@ export default function AtencaoPrimaria() {
     <>
       <HeaderComponent />
 
-      <motion.section 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+      <MotionSection 
         className="py-20 px-4 bg-gradient-to-b from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 dark:text-white"
       >
         <div className="container mx-auto max-w-4xl text-center">
@@ -181,7 +179,7 @@ export default function AtencaoPrimaria() {
             </ServiceCard>
           </div>
         </div>
-      </motion.section>
+      </MotionSection>
 
       <section className="py-20 px-4 bg-white dark:bg-gray-900 dark:text-white">
         <div className="container mx-auto max-w-5xl">
@@ -228,7 +226,7 @@ export default function AtencaoPrimaria() {
           <SectionTitle>Destaques das Nossas Ações</SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {cards.map((slide) => (
-              <motion.div
+              <AnimatedDiv
                 key={slide.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -244,7 +242,7 @@ export default function AtencaoPrimaria() {
                     }
                   ]}
                 />
-              </motion.div>
+              </AnimatedDiv>
             ))}
           </div>
         </div>
