@@ -15,7 +15,6 @@ import {
   MapPin,
   Calendar,
 } from "lucide-react";
-import React from 'react';
 import AnimatedDiv from "@/components/AnimatedDiv";
 
 // Tipos

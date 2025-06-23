@@ -1,5 +1,3 @@
-import React from "react";
-
 interface InfoListProps {
   title: string;
   icon: React.ElementType;

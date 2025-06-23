@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import React from "react";
 
 const AnimatedDiv: React.FC<React.ComponentProps<typeof motion.div>> = ({ children, ...props }) => (
   <motion.div
